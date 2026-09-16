@@ -1,0 +1,13 @@
+{
+  "name": "Buses UCA",
+  "short_name": "Buses",
+  "description": "Horarios de bus entre casa y el campus",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1d33",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

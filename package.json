@@ -1,0 +1,19 @@
+{
+  "name": "buses-uca",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "node --test --experimental-strip-types src/**/*.test.ts",
+    "explore": "NODE_USE_ENV_PROXY=1 node --experimental-strip-types scripts/explore-ctan.ts",
+    "sample-data": "python3 scripts/make-sample-data.py"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}

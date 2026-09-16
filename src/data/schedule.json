@@ -1,0 +1,1509 @@
+{
+  "generatedAt": "2026-09-16T19:45:57+00:00",
+  "source": "DATOS DE EJEMPLO INVENTADOS — no son horarios reales",
+  "isSample": true,
+  "stops": [
+    {
+      "id": "telegrafia",
+      "name": "Telegrafía",
+      "officialName": "Telegrafía Sin Hilos"
+    },
+    {
+      "id": "esi",
+      "name": "ESI",
+      "officialName": "Escuela Ingeniería"
+    },
+    {
+      "id": "casem",
+      "name": "CASEM",
+      "officialName": "C. Educación/Facultad Ciencias"
+    }
+  ],
+  "lines": [
+    {
+      "id": "linea-campus",
+      "code": "EJEMPLO-1",
+      "name": "Cádiz – Campus Puerto Real",
+      "kind": "bus"
+    },
+    {
+      "id": "lanzadera",
+      "code": "EJEMPLO-L",
+      "name": "Lanzadera CASEM – ESI",
+      "kind": "lanzadera"
+    }
+  ],
+  "periods": [
+    {
+      "id": "lectivo",
+      "name": "Periodo lectivo",
+      "from": "2026-09-01",
+      "to": "2027-06-30"
+    },
+    {
+      "id": "verano",
+      "name": "Verano",
+      "from": "2027-07-01",
+      "to": "2027-08-31"
+    }
+  ],
+  "calendars": [
+    {
+      "id": "lectivo-laborable",
+      "periodId": "lectivo",
+      "dayType": "laborable"
+    },
+    {
+      "id": "lectivo-sabado",
+      "periodId": "lectivo",
+      "dayType": "sabado"
+    },
+    {
+      "id": "lectivo-domingo-festivo",
+      "periodId": "lectivo",
+      "dayType": "domingo-festivo"
+    },
+    {
+      "id": "verano-laborable",
+      "periodId": "verano",
+      "dayType": "laborable"
+    },
+    {
+      "id": "verano-sabado",
+      "periodId": "verano",
+      "dayType": "sabado"
+    },
+    {
+      "id": "verano-domingo-festivo",
+      "periodId": "verano",
+      "dayType": "domingo-festivo"
+    }
+  ],
+  "trips": [
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 435
+        },
+        {
+          "stopId": "casem",
+          "time": 460
+        },
+        {
+          "stopId": "esi",
+          "time": 467
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 465
+        },
+        {
+          "stopId": "casem",
+          "time": 490
+        },
+        {
+          "stopId": "esi",
+          "time": 497
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 495
+        },
+        {
+          "stopId": "casem",
+          "time": 520
+        },
+        {
+          "stopId": "esi",
+          "time": 527
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 525
+        },
+        {
+          "stopId": "casem",
+          "time": 550
+        },
+        {
+          "stopId": "esi",
+          "time": 557
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 555
+        },
+        {
+          "stopId": "casem",
+          "time": 580
+        },
+        {
+          "stopId": "esi",
+          "time": 587
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 585
+        },
+        {
+          "stopId": "casem",
+          "time": 610
+        },
+        {
+          "stopId": "esi",
+          "time": 617
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 615
+        },
+        {
+          "stopId": "casem",
+          "time": 640
+        },
+        {
+          "stopId": "esi",
+          "time": 647
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 675
+        },
+        {
+          "stopId": "casem",
+          "time": 700
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 735
+        },
+        {
+          "stopId": "casem",
+          "time": 760
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 795
+        },
+        {
+          "stopId": "casem",
+          "time": 820
+        },
+        {
+          "stopId": "esi",
+          "time": 827
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 855
+        },
+        {
+          "stopId": "casem",
+          "time": 880
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 915
+        },
+        {
+          "stopId": "casem",
+          "time": 940
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 975
+        },
+        {
+          "stopId": "casem",
+          "time": 1000
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 1035
+        },
+        {
+          "stopId": "casem",
+          "time": 1060
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 1095
+        },
+        {
+          "stopId": "casem",
+          "time": 1120
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 1155
+        },
+        {
+          "stopId": "casem",
+          "time": 1180
+        },
+        {
+          "stopId": "esi",
+          "time": 1187
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 1215
+        },
+        {
+          "stopId": "casem",
+          "time": 1240
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 490
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 515
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 550
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 575
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 610
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 635
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 790
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 815
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 850
+        },
+        {
+          "stopId": "casem",
+          "time": 857
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 882
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 910
+        },
+        {
+          "stopId": "casem",
+          "time": 917
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 942
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 970
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 995
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1030
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1055
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1090
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1115
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1150
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1175
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1210
+        },
+        {
+          "stopId": "casem",
+          "time": 1217
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1242
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1270
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1295
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 485
+        },
+        {
+          "stopId": "esi",
+          "time": 491
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 485
+        },
+        {
+          "stopId": "casem",
+          "time": 491
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 515
+        },
+        {
+          "stopId": "esi",
+          "time": 521
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 515
+        },
+        {
+          "stopId": "casem",
+          "time": 521
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 545
+        },
+        {
+          "stopId": "esi",
+          "time": 551
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 545
+        },
+        {
+          "stopId": "casem",
+          "time": 551
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 575
+        },
+        {
+          "stopId": "esi",
+          "time": 581
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 575
+        },
+        {
+          "stopId": "casem",
+          "time": 581
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 605
+        },
+        {
+          "stopId": "esi",
+          "time": 611
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 605
+        },
+        {
+          "stopId": "casem",
+          "time": 611
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 635
+        },
+        {
+          "stopId": "esi",
+          "time": 641
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 635
+        },
+        {
+          "stopId": "casem",
+          "time": 641
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 665
+        },
+        {
+          "stopId": "esi",
+          "time": 671
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 665
+        },
+        {
+          "stopId": "casem",
+          "time": 671
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 695
+        },
+        {
+          "stopId": "esi",
+          "time": 701
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 695
+        },
+        {
+          "stopId": "casem",
+          "time": 701
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 725
+        },
+        {
+          "stopId": "esi",
+          "time": 731
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 725
+        },
+        {
+          "stopId": "casem",
+          "time": 731
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 755
+        },
+        {
+          "stopId": "esi",
+          "time": 761
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 755
+        },
+        {
+          "stopId": "casem",
+          "time": 761
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 785
+        },
+        {
+          "stopId": "esi",
+          "time": 791
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 785
+        },
+        {
+          "stopId": "casem",
+          "time": 791
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 815
+        },
+        {
+          "stopId": "esi",
+          "time": 821
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 815
+        },
+        {
+          "stopId": "casem",
+          "time": 821
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 845
+        },
+        {
+          "stopId": "esi",
+          "time": 851
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 845
+        },
+        {
+          "stopId": "casem",
+          "time": 851
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 875
+        },
+        {
+          "stopId": "esi",
+          "time": 881
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 875
+        },
+        {
+          "stopId": "casem",
+          "time": 881
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 905
+        },
+        {
+          "stopId": "esi",
+          "time": 911
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 905
+        },
+        {
+          "stopId": "casem",
+          "time": 911
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 935
+        },
+        {
+          "stopId": "esi",
+          "time": 941
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 935
+        },
+        {
+          "stopId": "casem",
+          "time": 941
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 965
+        },
+        {
+          "stopId": "esi",
+          "time": 971
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 965
+        },
+        {
+          "stopId": "casem",
+          "time": 971
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 995
+        },
+        {
+          "stopId": "esi",
+          "time": 1001
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 995
+        },
+        {
+          "stopId": "casem",
+          "time": 1001
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1025
+        },
+        {
+          "stopId": "esi",
+          "time": 1031
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1025
+        },
+        {
+          "stopId": "casem",
+          "time": 1031
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1055
+        },
+        {
+          "stopId": "esi",
+          "time": 1061
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1055
+        },
+        {
+          "stopId": "casem",
+          "time": 1061
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1085
+        },
+        {
+          "stopId": "esi",
+          "time": 1091
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1085
+        },
+        {
+          "stopId": "casem",
+          "time": 1091
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1115
+        },
+        {
+          "stopId": "esi",
+          "time": 1121
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1115
+        },
+        {
+          "stopId": "casem",
+          "time": 1121
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1145
+        },
+        {
+          "stopId": "esi",
+          "time": 1151
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1145
+        },
+        {
+          "stopId": "casem",
+          "time": 1151
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1175
+        },
+        {
+          "stopId": "esi",
+          "time": 1181
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1175
+        },
+        {
+          "stopId": "casem",
+          "time": 1181
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1205
+        },
+        {
+          "stopId": "esi",
+          "time": 1211
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1205
+        },
+        {
+          "stopId": "casem",
+          "time": 1211
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1235
+        },
+        {
+          "stopId": "esi",
+          "time": 1241
+        }
+      ]
+    },
+    {
+      "lineId": "lanzadera",
+      "calendarId": "lectivo-laborable",
+      "stops": [
+        {
+          "stopId": "esi",
+          "time": 1235
+        },
+        {
+          "stopId": "casem",
+          "time": 1241
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 555
+        },
+        {
+          "stopId": "casem",
+          "time": 580
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 675
+        },
+        {
+          "stopId": "casem",
+          "time": 700
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 795
+        },
+        {
+          "stopId": "casem",
+          "time": 820
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 1035
+        },
+        {
+          "stopId": "casem",
+          "time": 1060
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 1155
+        },
+        {
+          "stopId": "casem",
+          "time": 1180
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 610
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 635
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 730
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 755
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 850
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 875
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1090
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1115
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "lectivo-sabado",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1210
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1235
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "verano-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 495
+        },
+        {
+          "stopId": "casem",
+          "time": 520
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "verano-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 735
+        },
+        {
+          "stopId": "casem",
+          "time": 760
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "verano-laborable",
+      "stops": [
+        {
+          "stopId": "telegrafia",
+          "time": 975
+        },
+        {
+          "stopId": "casem",
+          "time": 1000
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "verano-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 550
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 575
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "verano-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 790
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 815
+        }
+      ]
+    },
+    {
+      "lineId": "linea-campus",
+      "calendarId": "verano-laborable",
+      "stops": [
+        {
+          "stopId": "casem",
+          "time": 1030
+        },
+        {
+          "stopId": "telegrafia",
+          "time": 1055
+        }
+      ]
+    }
+  ],
+  "walkLinks": [
+    {
+      "from": "esi",
+      "to": "casem",
+      "minutes": 18
+    },
+    {
+      "from": "casem",
+      "to": "esi",
+      "minutes": 18
+    }
+  ],
+  "holidays": [
+    "2026-10-12",
+    "2026-11-02",
+    "2026-12-08",
+    "2026-12-25",
+    "2027-01-01"
+  ]
+}
