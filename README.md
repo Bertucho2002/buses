@@ -45,7 +45,8 @@ Se despliega solo en GitHub Pages al hacer push a `main`.
 | `src/planner/plan.test.ts` | Tests del planificador. |
 | `src/config.ts` | Paradas propias y minutos andando hasta cada una. |
 | `src/main.ts` | Interfaz. |
-| `scripts/explore-ctan.ts` | Sondea la API de CTAN para ver la forma real de los datos. |
+| `scripts/descargar-ctan.py` | Reconocimiento de la API de CTAN. Se ejecuta a mano y vuelca todo en `ctan-dump/`. |
+| `scripts/explore-ctan.ts` | Lo mismo, en TypeScript, para cuando haya acceso desde la sesión. |
 | `scripts/make-sample-data.py` | Genera los datos de ejemplo de mientras. |
 
 ### El planificador
@@ -70,6 +71,7 @@ que los horarios coinciden con los que se publican de cara al público.
 ### Pendiente
 
 - [ ] Confirmar los endpoints reales de la API y que los datos están al día.
+      Se hace ejecutando `python3 scripts/descargar-ctan.py` y subiendo `ctan-dump/`.
 - [ ] Escribir el normalizador API → `schedule.json` y sustituir los datos de ejemplo.
 - [ ] Averiguar si las **lanzaderas ESI↔CASEM** están en el consorcio o son un
       servicio interno de la UCA. Si son internas, hay que meterlas a mano.
