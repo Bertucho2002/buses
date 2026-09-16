@@ -46,6 +46,7 @@ IDS = {
     "Escuela Ingeniería": "esi",
 }
 NOMBRES_CORTOS = {
+    "rio-s-pedro": "Río S. Pedro",
     "telegrafia": "Telegrafía",
     "casem": "CASEM",
     "esi": "ESI",
@@ -55,6 +56,23 @@ NOMBRES_CORTOS = {
     "avda-las-cortes": "Las Cortes",
     "pz-espana": "Pz. España",
 }
+
+# El corredor que nos interesa, en orden de recorrido hacia el campus. Varias
+# líneas vienen de Jerez, Rota o Chipiona y pasan por aquí de camino; su
+# recorrido completo no nos sirve de nada, así que se recorta a este tramo.
+CORREDOR = [
+    "Pz. España",
+    "Plaza de Sevilla-Estación de Cádiz",
+    "Pz.Asdrúbal-S.Sever.",
+    "Avda. Las Cortes",
+    "Hospital-Segunda Ag.",
+    "Telegrafía-Estadio",
+    "F. Ciencias Empresariales",
+    "Avda. de Huelva",
+    "Río S. Pedro",
+    "C. Educación/Facultad Ciencias",
+    "Escuela Ingeniería",
+]
 
 # Minutos andando entre las dos paradas del campus.
 ANDANDO_ESI_CASEM = 18
@@ -91,6 +109,27 @@ LINEAS_POR_CTAN = {
 def festivos_fijos(anios: list[int]) -> list[str]:
     fijos = [(1, 1), (1, 6), (2, 28), (5, 1), (8, 15), (10, 12), (11, 1), (12, 6), (12, 8), (12, 25)]
     return [f"{a:04d}-{m:02d}-{d:02d}" for a in anios for m, d in fijos]
+
+
+def cruzar_medianoche(paradas: list) -> list:
+    """Arregla las expediciones que pasan de las doce.
+
+    El último bus sale a las 23:43 y llega a las 00:06, y la API devuelve
+    "00:06" a secas, que son 6 minutos. Tal cual, la expedición parece llegar
+    antes de salir. Se resuelve sumando un día a partir de cada salto hacia
+    atrás, que es lo mismo que hace la propia API con su horaCorte de las 4:00.
+    """
+    salida = []
+    desfase = 0
+    anterior = None
+    for p in paradas:
+        t = p["time"] + desfase
+        if anterior is not None and t < anterior:
+            desfase += 24 * 60
+            t += 24 * 60
+        salida.append({**p, "time": t})
+        anterior = t
+    return salida
 
 
 def slug(nombre: str) -> str:
@@ -180,6 +219,7 @@ def normalizar_lineas(carpeta: Path, stops: dict, lines: dict, trips: list,
                                for i, h in zip(ids, horas) if parse_hora(h) is not None]
                     if len(paradas) < 2:
                         continue
+                    paradas = cruzar_medianoche(paradas)
                     dias = (fila.get("frecuencia") or fila.get("dias") or "").strip()
                     firma = (ctan_id, periodo_id, corredor, dias,
                              tuple((p["stopId"], p["time"]) for p in paradas))
@@ -242,6 +282,7 @@ def normalizar(tabla: dict, stops: dict, lines: dict, trips: list,
         # Una expedición que solo toca una parada no lleva a ningún sitio.
         if len(paradas) < 2:
             continue
+        paradas = cruzar_medianoche(paradas)
 
         codigo = fila.get("codigo", "?")
         idl = slug(codigo)
@@ -257,6 +298,80 @@ def normalizar(tabla: dict, stops: dict, lines: dict, trips: list,
     return añadidas
 
 
+def recortar_al_corredor(trips: list) -> tuple:
+    """Deja en cada expedición solo las paradas del corredor que nos importa
+    y le asigna el sentido que lleva DE VERDAD.
+
+    El "Ida" y "Vuelta" de la API van referidos al sentido propio de cada
+    línea, no al nuestro: para la M-967, que hace Chipiona-Sanlúcar-Cádiz, su
+    ida baja hacia Cádiz, o sea nuestra vuelta. Fiarse de esa etiqueta metía
+    viajes de vuelta en la tabla de ida, con las horas decreciendo. El sentido
+    se deduce de si la expedición avanza hacia el campus o hacia Cádiz.
+
+    Devuelve (descartadas, recolocadas).
+    """
+    orden = {IDS.get(n, slug(n)): i for i, n in enumerate(CORREDOR)}
+    antes = len(trips)
+    recolocadas = 0
+    for t in trips:
+        t["stops"] = [p for p in t["stops"] if p["stopId"] in orden]
+        if len(t["stops"]) < 2:
+            continue
+        sentido = "ida" if orden[t["stops"][-1]["stopId"]] > orden[t["stops"][0]["stopId"]] else "vuelta"
+        if sentido != t["corridorId"]:
+            t["corridorId"] = sentido
+            recolocadas += 1
+    trips[:] = [t for t in trips if len(t["stops"]) >= 2]
+    return antes - len(trips), recolocadas
+
+
+def corredores_del_tramo(trips: list) -> list:
+    """Las columnas de la tabla de horarios, en orden de recorrido."""
+    orden = [IDS.get(n, slug(n)) for n in CORREDOR]
+    salida = []
+    for corredor_id, nombre, secuencia in (
+        ("ida", "Cádiz → Campus", orden),
+        ("vuelta", "Campus → Cádiz", list(reversed(orden))),
+    ):
+        usadas = {p["stopId"] for t in trips if t["corridorId"] == corredor_id for p in t["stops"]}
+        salida.append({"id": corredor_id, "name": nombre,
+                       "stops": [i for i in secuencia if i in usadas]})
+    return salida
+
+
+def validar(trips: list, corredores: list) -> list:
+    """Comprueba lo que tiene que cumplirse sí o sí, y devuelve los problemas.
+
+    Un horario mal no avisa: simplemente hace perder un autobús. Así que estas
+    comprobaciones van en el generador, no en los tests de la app.
+    """
+    problemas = []
+    orden = {c["id"]: {p: i for i, p in enumerate(c["stops"])} for c in corredores}
+    for n, t in enumerate(trips):
+        horas = [p["time"] for p in t["stops"]]
+        if horas != sorted(horas):
+            problemas.append(f"expedición {n} ({t['lineId']}, {t['days']}): las horas "
+                             f"no van en orden: {horas}")
+    return problemas
+
+
+def avisos_de_orden(trips: list, corredores: list) -> list:
+    """Expediciones cuyas paradas no siguen el orden de las columnas.
+
+    No es un error: cada línea atraviesa Cádiz por donde le conviene y ninguna
+    secuencia lineal de paradas vale para todas. Solo afecta a cómo se ven en
+    la tabla, no a los cálculos, que van por horas.
+    """
+    orden = {c["id"]: {p: i for i, p in enumerate(c["stops"])} for c in corredores}
+    raros = []
+    for t in trips:
+        pos = [orden.get(t["corridorId"], {}).get(p["stopId"]) for p in t["stops"]]
+        pos = [x for x in pos if x is not None]
+        if pos != sorted(pos):
+            raros.append(f"{t['lineId']} [{t['days']}] {t['corridorId']}")
+    return raros
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--desde-volcado", metavar="CARPETA",
@@ -270,34 +385,42 @@ def main() -> int:
                          "venían del corredor, para no duplicarlas.")
     args = ap.parse_args()
 
-    leer = (lambda o, d: desde_volcado(Path(args.desde_volcado), o, d)) if args.desde_volcado else descargar
-    fuente = f"volcado local {args.desde_volcado}" if args.desde_volcado else "api.ctan.es"
-    print(f"Leyendo de {fuente}...")
-
-    ida = leer(NUCLEO_CASA, NUCLEO_CAMPUS)
-    vuelta = leer(NUCLEO_CAMPUS, NUCLEO_CASA)
-
     stops: dict = {}
     lines: dict = {}
     trips: list = []
     corredores: list = []
     periodos: dict = {}
-    n_ida = normalizar(ida, stops, lines, trips, "ida", "Cádiz → Campus", corredores)
-    n_vuelta = normalizar(vuelta, stops, lines, trips, "vuelta", "Campus → Cádiz", corredores)
-    print(f"  {n_ida} expediciones de ida, {n_vuelta} de vuelta")
-
     solo = {c.strip() for c in args.solo.split(",")} if args.solo else None
-    if solo:
-        # Lo que venga del volcado por línea manda: trae periodo de vigencia y
-        # está más al día que la tabla del corredor.
-        ids_fuera = {l["id"] for l in lines.values() if l["code"] in solo}
-        antes = len(trips)
-        trips[:] = [t for t in trips if t["lineId"] not in ids_fuera]
-        if antes != len(trips):
-            print(f"  {antes - len(trips)} expediciones del corredor sustituidas ({', '.join(sorted(solo))})")
+
+    # La tabla del corredor solo se usa si se pide: los horarios por línea son
+    # mejor fuente, porque traen el periodo de vigencia de cada expedición.
+    if args.desde_volcado or not args.lineas_desde:
+        leer = (lambda o, d: desde_volcado(Path(args.desde_volcado), o, d)) if args.desde_volcado else descargar
+        fuente = f"volcado local {args.desde_volcado}" if args.desde_volcado else "api.ctan.es"
+        print(f"Leyendo el corredor de {fuente}...")
+        n_ida = normalizar(leer(NUCLEO_CASA, NUCLEO_CAMPUS), stops, lines, trips,
+                           "ida", "Cádiz → Campus", corredores)
+        n_vuelta = normalizar(leer(NUCLEO_CAMPUS, NUCLEO_CASA), stops, lines, trips,
+                              "vuelta", "Campus → Cádiz", corredores)
+        print(f"  {n_ida} expediciones de ida, {n_vuelta} de vuelta")
+        if solo:
+            # Lo que venga del volcado por línea manda sobre la tabla del corredor.
+            ids_fuera = {l["id"] for l in lines.values() if l["code"] in solo}
+            antes = len(trips)
+            trips[:] = [t for t in trips if t["lineId"] not in ids_fuera]
+            if antes != len(trips):
+                print(f"  {antes - len(trips)} del corredor sustituidas ({', '.join(sorted(solo))})")
+
     for carpeta in args.lineas_desde:
+        print(f"Leyendo los horarios por línea de {carpeta}...")
         n = normalizar_lineas(Path(carpeta), stops, lines, trips, periodos, solo)
-        print(f"  {n} expediciones más desde {carpeta}")
+        print(f"  {n} expediciones")
+
+    if not corredores:
+        descartadas, recolocadas = recortar_al_corredor(trips)
+        corredores = corredores_del_tramo(trips)
+        print(f"  recortado al corredor Cádiz–Campus: {descartadas} descartadas por no "
+              f"servir dos paradas del tramo, {recolocadas} con el sentido corregido")
 
     # Solo nos quedamos con las paradas por las que pasa algo.
     usadas = {p["stopId"] for t in trips for p in t["stops"]}
@@ -316,15 +439,21 @@ def main() -> int:
         "Faltan los festivos de fecha variable (Semana Santa) y los locales de "
         "Cádiz y Puerto Real. En esos días el horario mostrado puede no valer.",
     ]
-    # La API no da los periodos de vigencia por este endpoint, así que no
-    # sabemos si esto es el horario de curso o el de verano.
-    avisos.append(
-        "Estos datos no traen periodo de vigencia, así que la app no puede "
-        "distinguir el horario de curso del de verano. Conviene regenerarlos "
-        "al empezar el curso y al empezar el verano."
-    )
-
-    avisos.extend(AVISOS_EXTRA)
+    # horarios_origen_destino no dice a qué planificador pertenece cada
+    # horario; horarios_lineas sí. Según de dónde vengan los datos, el aviso
+    # es uno u otro, y decir los dos a la vez sería contradecirse.
+    if any("periodId" not in t for t in trips):
+        avisos.append(
+            "Estos datos no traen periodo de vigencia, así que la app no puede "
+            "distinguir el horario de curso del de verano. Conviene regenerarlos "
+            "al empezar el curso y al empezar el verano."
+        )
+        avisos.extend(AVISOS_EXTRA)
+    else:
+        avisos.append(
+            "Cada expedición sabe desde cuándo circula, así que la app "
+            "distingue el horario de curso del de verano."
+        )
 
     presentes = {l["code"] for l in lines.values()}
     faltan = [
@@ -337,8 +466,10 @@ def main() -> int:
 
     schedule = {
         "generatedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-        "source": f"api.ctan.es · Consorcio {CONSORCIO} (Bahía de Cádiz) · "
-                  f"horarios_origen_destino {NUCLEO_CASA}<->{NUCLEO_CAMPUS}",
+        "source": f"api.ctan.es · Consorcio {CONSORCIO} (Bahía de Cádiz) · " + (
+            f"horarios_lineas (por línea, con periodos de vigencia)"
+            if all("periodId" in t for t in trips)
+            else f"horarios_origen_destino {NUCLEO_CASA}<->{NUCLEO_CAMPUS}"),
         "isSample": False,
         "warnings": avisos,
         "missingLines": faltan,
@@ -353,6 +484,18 @@ def main() -> int:
         ],
         "holidays": sorted(festivos_fijos(anios)),
     }
+
+    raros = avisos_de_orden(trips, corredores)
+    if raros:
+        print(f"  {len(raros)} expediciones no siguen el orden de columnas "
+              f"(rutas distintas por Cádiz): {', '.join(sorted(set(raros)))}")
+
+    problemas = validar(trips, corredores)
+    if problemas:
+        print(f"\n{len(problemas)} problemas en los datos:")
+        for p in problemas[:10]:
+            print(f"  - {p}")
+        raise SystemExit("No escribo un horario con estos problemas.")
 
     SALIDA.parent.mkdir(parents=True, exist_ok=True)
     SALIDA.write_text(json.dumps(schedule, ensure_ascii=False, indent=1), encoding="utf-8")

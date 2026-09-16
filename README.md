@@ -81,16 +81,20 @@ que los horarios coinciden con los que se publican de cara al público.
 ### Cómo se regeneran
 
 ```bash
-python3 scripts/generar-horario.py                      # desde la API
-python3 scripts/generar-horario.py --desde-volcado ctan-dump2 \
-    --lineas-desde ctan-dump3 --solo M-035               # sin red
+python3 scripts/generar-horario.py --lineas-desde ctan-dump4   # como está ahora
+python3 scripts/generar-horario.py                             # desde la API
+python3 scripts/hoja-comprobacion.py                           # tabla para contrastar
 ```
 
-Los horarios salen de `horarios_origen_destino` entre el núcleo de Cádiz (`1`)
-y el del Campus Universitario (`41`). Ese endpoint devuelve la tabla completa
-en los dos sentidos, con una columna por bloque de paso: **Telegrafía-Estadio**,
-**C. Educación/Facultad Ciencias** y **Escuela Ingeniería** entre ellas. Los
-detalles están en `NOTAS-API.md`.
+Los horarios salen de `horarios_lineas`, línea por línea. Ese endpoint es más
+trabajoso que `horarios_origen_destino` —hay que sondear un día de cada tipo,
+porque `dia`/`mes` filtra también por día de la semana— pero a cambio devuelve
+el **periodo de vigencia** de cada expedición, que es lo que permite distinguir
+el horario de curso del de verano y saber desde cuándo circula una línea nueva.
+
+El generador valida lo que escribe: si las horas de una expedición no van en
+orden, no genera el fichero. Los detalles y las trampas de la API están en
+`NOTAS-API.md`.
 
 ### Lo que dicen los datos reales
 
@@ -107,15 +111,8 @@ muchas veces sale mejor enlazar que andar los 18.
 - [ ] **Festivos.** Ahora solo están los de fecha fija. Faltan la Semana Santa
       y los locales de Cádiz y Puerto Real. Se añaden a mano en el campo
       `holidays` de `schedule.json` (o mejor, en el script que lo genera).
-- [ ] **Rehacer el horario a partir del 21 de septiembre de 2026.** Ese día
-      entra un horario nuevo: arrancan la M-035, la M-037 y la M-038. La M-035
-      ya está metida, pero el resto del corredor viene de un volcado del día 16
-      y por tanto es el horario anterior. `scripts/descargar-ctan-4.py` baja la
-      semana completa del horario nuevo; con eso se regenera todo.
-- [ ] **Periodos de vigencia del resto de líneas.** La M-035 ya los trae. Las
-      demás vienen de `horarios_origen_destino`, que no dice a qué planificador
-      pertenece cada horario, así que la app todavía no distingue el horario de
-      curso del de verano para ellas.
+- [x] ~~Horario nuevo del 21 de septiembre (M-035, M-037, M-038).~~
+- [x] ~~Periodos de vigencia: curso y verano.~~
 - [ ] **Contrastar con la web del consorcio** (`siu.cmtbc.es`) que los horarios
       coinciden con los que publican de cara al público.
 - [ ] **Lanzaderas de la UCA.** Entre las 70 líneas del consorcio no hay

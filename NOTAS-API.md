@@ -127,6 +127,29 @@ solo aplican a algunos días.
 
 Una línea que aún no ha arrancado devuelve `planificadores: []`.
 
+### "Ida" y "Vuelta" son de la línea, no tuyas
+
+El sentido que devuelve la API va referido al recorrido propio de cada línea.
+La M-967 hace Chipiona–Sanlúcar–**Cádiz**, así que su "Ida" baja hacia Cádiz,
+que para nosotros es la vuelta. Fiarse de esa etiqueta metía 54 expediciones
+en la tabla equivocada, con las horas decreciendo. El sentido hay que
+deducirlo de por dónde avanza la expedición.
+
+### Los buses que pasan de las doce
+
+El último de la noche sale del CASEM a las 23:43 y llega a Plaza de España a
+las 00:06, y la API devuelve `"00:06"` a secas. Tal cual, la expedición parece
+llegar antes de salir. Hay que sumar un día a partir de cada salto hacia
+atrás. La propia API lo confirma con su campo `horaCorte`, que vale
+`04:00:00`: por debajo de esa hora, el servicio es del día anterior.
+
+### Un corredor lineal no vale para todas las líneas
+
+Cada línea atraviesa Cádiz por donde le conviene. La M-038 pasa por Asdrúbal
+antes que por F. Ciencias Empresariales, y otras al revés, así que ninguna
+secuencia única de paradas encaja con todas. Solo afecta a cómo se ordenan las
+columnas de la tabla; los cálculos van por horas y no se ven afectados.
+
 ## Trampas encontradas
 
 - **`/paradas/:id/servicios` no lista las líneas de la parada**, lista los
