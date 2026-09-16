@@ -18,6 +18,12 @@ descarga del consorcio y los deja en `src/data/schedule.json`, que se empaqueta 
 la app. Así carga al instante, **funciona sin cobertura** (que es justo lo que pasa
 en una parada) y no depende de que la web del consorcio esté en pie.
 
+Tiene dos pantallas. **Próximos** planifica el viaje y responde a "¿cómo llego
+a clase?". **Horarios** enseña la tabla completa del día, una fila por salida,
+para cuando lo que quieres es planificar en vez de salir corriendo. Las dos
+comparten un selector de día, así que se puede consultar cualquier fecha y no
+solo hoy.
+
 **No es un "próximos buses de A a B".** El destino es una *zona* con dos paradas,
 la ESI y el CASEM, separadas por 18 minutos andando. Como a la ESI llegan menos
 buses, sobre todo por la tarde, muchas veces sale mejor bajarse en el CASEM y
@@ -44,7 +50,8 @@ Se despliega solo en GitHub Pages al hacer push a `main`.
 | `src/planner/plan.ts` | Busca itinerarios: directo, con transbordo y andando. |
 | `src/planner/plan.test.ts` | Tests del planificador. |
 | `src/config.ts` | Paradas propias y minutos andando hasta cada una. |
-| `src/main.ts` | Interfaz. |
+| `src/main.ts` | Interfaz: las dos pantallas y el selector de día. |
+| `src/ui/dates.ts` | Manejo de fechas del selector de día. |
 | `scripts/descargar-ctan.py` | Reconocimiento de la API de CTAN. Se ejecuta a mano y vuelca todo en `ctan-dump/`. |
 | `scripts/explore-ctan.ts` | Lo mismo, en TypeScript, para cuando haya acceso desde la sesión. |
 | `scripts/generar-horario.py` | Descarga la API y genera `src/data/schedule.json`. |

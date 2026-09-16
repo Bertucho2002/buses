@@ -48,6 +48,11 @@ NOMBRES_CORTOS = {
     "telegrafia": "Telegrafía",
     "casem": "CASEM",
     "esi": "ESI",
+    "plaza-de-sevilla-estacion-de-cadiz": "Estación",
+    "pz-asdrubal-s-sever": "Asdrúbal",
+    "hospital-segunda-ag": "Hospital",
+    "avda-las-cortes": "Las Cortes",
+    "pz-espana": "Pz. España",
 }
 
 # Minutos andando entre las dos paradas del campus.
@@ -97,7 +102,8 @@ def desde_volcado(carpeta: Path, origen: str, destino: str) -> dict:
     return json.loads(f.read_text(encoding="utf-8"))
 
 
-def normalizar(tabla: dict, stops: dict, lines: dict, trips: list) -> int:
+def normalizar(tabla: dict, stops: dict, lines: dict, trips: list,
+               corredor_id: str, corredor_nombre: str, corredores: list) -> int:
     """Convierte una tabla de horarios (ida o vuelta) en expediciones."""
     bloques = [b["nombre"] for b in tabla.get("bloques", [])]
     # La primera columna es "Lineas" y las dos últimas Frecuencia y
@@ -114,6 +120,20 @@ def normalizar(tabla: dict, stops: dict, lines: dict, trips: list) -> int:
     for idp, nombre in zip(ids, columnas):
         stops.setdefault(idp, {"id": idp, "name": NOMBRES_CORTOS.get(idp, nombre), "officialName": nombre})
 
+    # Solo entran en el corredor las paradas por las que para algo: la API
+    # deja columnas a cero que solo estorbarían en la tabla.
+    servidas = {
+        idp
+        for fila in filas
+        for idp, hora in zip(ids, fila.get("horas", []))
+        if parse_hora(hora) is not None
+    }
+    corredores.append({
+        "id": corredor_id,
+        "name": corredor_nombre,
+        "stops": [i for i in ids if i in servidas],
+    })
+
     añadidas = 0
     for fila in filas:
         paradas = []
@@ -129,7 +149,8 @@ def normalizar(tabla: dict, stops: dict, lines: dict, trips: list) -> int:
         idl = slug(codigo)
         lines.setdefault(idl, {"id": idl, "code": codigo, "name": codigo, "ctanId": str(fila.get("idlinea", ""))})
 
-        viaje = {"lineId": idl, "days": fila.get("dias", "").strip(), "stops": paradas}
+        viaje = {"lineId": idl, "days": fila.get("dias", "").strip(),
+                 "corridorId": corredor_id, "stops": paradas}
         obs = (fila.get("observaciones") or "").strip()
         if obs:
             viaje["notes"] = obs
@@ -154,8 +175,9 @@ def main() -> int:
     stops: dict = {}
     lines: dict = {}
     trips: list = []
-    n_ida = normalizar(ida, stops, lines, trips)
-    n_vuelta = normalizar(vuelta, stops, lines, trips)
+    corredores: list = []
+    n_ida = normalizar(ida, stops, lines, trips, "ida", "Cádiz → Campus", corredores)
+    n_vuelta = normalizar(vuelta, stops, lines, trips, "vuelta", "Campus → Cádiz", corredores)
     print(f"  {n_ida} expediciones de ida, {n_vuelta} de vuelta")
 
     # Solo nos quedamos con las paradas por las que pasa algo.
@@ -191,6 +213,7 @@ def main() -> int:
         "warnings": avisos,
         "stops": sorted(stops.values(), key=lambda s: s["id"]),
         "lines": sorted(lines.values(), key=lambda l: l["code"]),
+        "corridors": corredores,
         "periods": [],
         "trips": trips,
         "walkLinks": [

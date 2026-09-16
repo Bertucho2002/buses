@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-16T20:15:51+00:00",
+ "generatedAt": "2026-09-16T20:27:55+00:00",
  "source": "api.ctan.es · Consorcio 2 (Bahía de Cádiz) · horarios_origen_destino 1<->41",
  "isSample": false,
  "warnings": [
@@ -10,7 +10,7 @@
  "stops": [
   {
    "id": "avda-las-cortes",
-   "name": "Avda. Las Cortes",
+   "name": "Las Cortes",
    "officialName": "Avda. Las Cortes"
   },
   {
@@ -25,17 +25,17 @@
   },
   {
    "id": "hospital-segunda-ag",
-   "name": "Hospital-Segunda Ag.",
+   "name": "Hospital",
    "officialName": "Hospital-Segunda Ag."
   },
   {
    "id": "plaza-de-sevilla-estacion-de-cadiz",
-   "name": "Plaza de Sevilla-Estación de Cádiz",
+   "name": "Estación",
    "officialName": "Plaza de Sevilla-Estación de Cádiz"
   },
   {
    "id": "pz-asdrubal-s-sever",
-   "name": "Pz.Asdrúbal-S.Sever.",
+   "name": "Asdrúbal",
    "officialName": "Pz.Asdrúbal-S.Sever."
   },
   {
@@ -117,11 +117,42 @@
    "ctanId": "225"
   }
  ],
+ "corridors": [
+  {
+   "id": "ida",
+   "name": "Cádiz → Campus",
+   "stops": [
+    "pz-espana",
+    "plaza-de-sevilla-estacion-de-cadiz",
+    "pz-asdrubal-s-sever",
+    "avda-las-cortes",
+    "hospital-segunda-ag",
+    "telegrafia",
+    "casem",
+    "esi"
+   ]
+  },
+  {
+   "id": "vuelta",
+   "name": "Campus → Cádiz",
+   "stops": [
+    "esi",
+    "casem",
+    "telegrafia",
+    "hospital-segunda-ag",
+    "pz-asdrubal-s-sever",
+    "avda-las-cortes",
+    "plaza-de-sevilla-estacion-de-cadiz",
+    "pz-espana"
+   ]
+  }
+ ],
  "periods": [],
  "trips": [
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -144,6 +175,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -175,6 +207,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -206,6 +239,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -237,6 +271,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -260,6 +295,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -291,6 +327,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -321,6 +358,7 @@
   {
    "lineId": "m-032",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -344,6 +382,7 @@
   {
    "lineId": "m-037",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -370,6 +409,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -393,6 +433,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -416,6 +457,7 @@
   {
    "lineId": "m-030",
    "days": "S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -447,6 +489,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -478,6 +521,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -509,6 +553,7 @@
   {
    "lineId": "m-030",
    "days": "D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -540,6 +585,7 @@
   {
    "lineId": "m-030",
    "days": "L-S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -571,6 +617,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -594,6 +641,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -625,6 +673,7 @@
   {
    "lineId": "m-030",
    "days": "L-S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -656,6 +705,7 @@
   {
    "lineId": "m-960",
    "days": "L-D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -675,6 +725,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -705,6 +756,7 @@
   {
    "lineId": "m-031",
    "days": "D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -728,6 +780,7 @@
   {
    "lineId": "m-030",
    "days": "L-D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -759,6 +812,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -782,6 +836,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -813,6 +868,7 @@
   {
    "lineId": "m-052",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -835,6 +891,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -866,6 +923,7 @@
   {
    "lineId": "m-031",
    "days": "D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -889,6 +947,7 @@
   {
    "lineId": "m-960",
    "days": "L-D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -908,6 +967,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -931,6 +991,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -954,6 +1015,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -985,6 +1047,7 @@
   {
    "lineId": "m-904",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1016,6 +1079,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1046,6 +1110,7 @@
   {
    "lineId": "m-030",
    "days": "D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1077,6 +1142,7 @@
   {
    "lineId": "m-031",
    "days": "S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1100,6 +1166,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1123,6 +1190,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1145,6 +1213,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1167,6 +1236,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1198,6 +1268,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1217,6 +1288,7 @@
   {
    "lineId": "m-061",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1240,6 +1312,7 @@
   {
    "lineId": "m-030",
    "days": "L-D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1271,6 +1344,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1294,6 +1368,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1316,6 +1391,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1339,6 +1415,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1362,6 +1439,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1393,6 +1471,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1415,6 +1494,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1438,6 +1518,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1457,6 +1538,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1488,6 +1570,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1519,6 +1602,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1550,6 +1634,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1581,6 +1666,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1612,6 +1698,7 @@
   {
    "lineId": "m-030",
    "days": "D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1643,6 +1730,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1674,6 +1762,7 @@
   {
    "lineId": "m-031",
    "days": "S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1697,6 +1786,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1728,6 +1818,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1751,6 +1842,7 @@
   {
    "lineId": "m-960",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -1770,6 +1862,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1801,6 +1894,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1832,6 +1926,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1863,6 +1958,7 @@
   {
    "lineId": "m-030",
    "days": "S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1894,6 +1990,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1917,6 +2014,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1948,6 +2046,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -1979,6 +2078,7 @@
   {
    "lineId": "m-061",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -2002,6 +2102,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2033,6 +2134,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2056,6 +2158,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -2079,6 +2182,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2110,6 +2214,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2141,6 +2246,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -2164,6 +2270,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -2187,6 +2294,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2218,6 +2326,7 @@
   {
    "lineId": "m-960",
    "days": "D",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "plaza-de-sevilla-estacion-de-cadiz",
@@ -2237,6 +2346,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2267,6 +2377,7 @@
   {
    "lineId": "m-031",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2290,6 +2401,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2313,6 +2425,7 @@
   {
    "lineId": "m-031",
    "days": "S-D-F",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2336,6 +2449,7 @@
   {
    "lineId": "m-031",
    "days": "L-S",
+   "corridorId": "ida",
    "stops": [
     {
      "stopId": "pz-espana",
@@ -2359,6 +2473,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2390,6 +2505,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2420,6 +2536,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2442,6 +2559,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2473,6 +2591,7 @@
   {
    "lineId": "m-031",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2504,6 +2623,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2535,6 +2655,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -2565,6 +2686,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -2596,6 +2718,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2627,6 +2750,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -2657,6 +2781,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2688,6 +2813,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2710,6 +2836,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2740,6 +2867,7 @@
   {
    "lineId": "m-061",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -2771,6 +2899,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2798,6 +2927,7 @@
   {
    "lineId": "m-960",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2825,6 +2955,7 @@
   {
    "lineId": "m-030",
    "days": "S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2856,6 +2987,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -2887,6 +3019,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2918,6 +3051,7 @@
   {
    "lineId": "m-904",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -2949,6 +3083,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -2980,6 +3115,7 @@
   {
    "lineId": "m-030",
    "days": "D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3011,6 +3147,7 @@
   {
    "lineId": "m-030",
    "days": "L-S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3042,6 +3179,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3072,6 +3210,7 @@
   {
    "lineId": "m-052",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3102,6 +3241,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3133,6 +3273,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3164,6 +3305,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3191,6 +3333,7 @@
   {
    "lineId": "m-030",
    "days": "L-S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3222,6 +3365,7 @@
   {
    "lineId": "m-031",
    "days": "D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3253,6 +3397,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3283,6 +3428,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3314,6 +3460,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3345,6 +3492,7 @@
   {
    "lineId": "m-030",
    "days": "L-D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3376,6 +3524,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3406,6 +3555,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3437,6 +3587,7 @@
   {
    "lineId": "m-031",
    "days": "D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3468,6 +3619,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3499,6 +3651,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3530,6 +3683,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3557,6 +3711,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3588,6 +3743,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3619,6 +3775,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3650,6 +3807,7 @@
   {
    "lineId": "m-031",
    "days": "S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3681,6 +3839,7 @@
   {
    "lineId": "m-030",
    "days": "D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3712,6 +3871,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3739,6 +3899,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3769,6 +3930,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3799,6 +3961,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3829,6 +3992,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3860,6 +4024,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3882,6 +4047,7 @@
   {
    "lineId": "m-967",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -3913,6 +4079,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3944,6 +4111,7 @@
   {
    "lineId": "m-030",
    "days": "L-D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -3975,6 +4143,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -4006,6 +4175,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4037,6 +4207,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4068,6 +4239,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4099,6 +4271,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4130,6 +4303,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4161,6 +4335,7 @@
   {
    "lineId": "m-031",
    "days": "S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4192,6 +4367,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4215,6 +4391,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4246,6 +4423,7 @@
   {
    "lineId": "m-960",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4273,6 +4451,7 @@
   {
    "lineId": "m-030",
    "days": "D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4304,6 +4483,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4335,6 +4515,7 @@
   {
    "lineId": "m-031",
    "days": "S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4366,6 +4547,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4389,6 +4571,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4420,6 +4603,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4451,6 +4635,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4482,6 +4667,7 @@
   {
    "lineId": "m-036",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4505,6 +4691,7 @@
   {
    "lineId": "m-030",
    "days": "L-S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4536,6 +4723,7 @@
   {
    "lineId": "m-960",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4563,6 +4751,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4594,6 +4783,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4625,6 +4815,7 @@
   {
    "lineId": "m-960",
    "days": "D",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4652,6 +4843,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4683,6 +4875,7 @@
   {
    "lineId": "m-041",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "esi",
@@ -4714,6 +4907,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4745,6 +4939,7 @@
   {
    "lineId": "m-030",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4776,6 +4971,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4807,6 +5003,7 @@
   {
    "lineId": "m-031",
    "days": "S-D-F",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4838,6 +5035,7 @@
   {
    "lineId": "m-030",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4868,6 +5066,7 @@
   {
    "lineId": "m-031",
    "days": "L-V",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",
@@ -4899,6 +5098,7 @@
   {
    "lineId": "m-031",
    "days": "L-S",
+   "corridorId": "vuelta",
    "stops": [
     {
      "stopId": "casem",

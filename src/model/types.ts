@@ -62,6 +62,17 @@ export interface Period {
   to: string;
 }
 
+/**
+ * Un sentido del corredor, con sus paradas en orden de recorrido. Es lo que
+ * permite pintar la tabla de horarios con una columna por parada.
+ */
+export interface Corridor {
+  id: string;
+  name: string;
+  /** Paradas en orden, de cabecera a final. */
+  stops: StopId[];
+}
+
 export interface TripStop {
   stopId: StopId;
   time: Minutes;
@@ -72,6 +83,8 @@ export interface Trip {
   lineId: LineId;
   /** Que dias circula. */
   days: FrequencyCode;
+  /** Sentido del corredor al que pertenece. */
+  corridorId: string;
   /** Periodo al que pertenece, si se conoce. */
   periodId?: string;
   /** Texto del consorcio ("SERVICIO ADAPTADO A PMR", etc.). */
@@ -99,6 +112,7 @@ export interface Schedule {
   warnings: string[];
   stops: Stop[];
   lines: Line[];
+  corridors: Corridor[];
   /** Puede venir vacio si la fuente no da informacion de periodos. */
   periods: Period[];
   trips: Trip[];

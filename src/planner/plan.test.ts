@@ -33,19 +33,22 @@ function makeSchedule(): Schedule {
       { id: "m030", code: "M-030", name: "M-030" },
       { id: "m967", code: "M-967", name: "M-967" },
     ],
+    corridors: [
+      { id: "ida", name: "Cádiz → Campus", stops: ["casa", "casem", "esi"] },
+    ],
     periods: [],
     trips: [
       // Directo a la ESI, pero sale tarde.
-      { lineId: "m030", days: "L-V", stops: [
+      { lineId: "m030", days: "L-V", corridorId: "ida", stops: [
         { stopId: "casa", time: 600 }, { stopId: "casem", time: 625 }, { stopId: "esi", time: 632 } ] },
       // Solo hasta el CASEM, sale antes.
-      { lineId: "m030", days: "L-V", stops: [
+      { lineId: "m030", days: "L-V", corridorId: "ida", stops: [
         { stopId: "casa", time: 540 }, { stopId: "casem", time: 565 } ] },
       // Salto CASEM -> ESI que enlaza con el anterior.
-      { lineId: "m967", days: "L-V", stops: [
+      { lineId: "m967", days: "L-V", corridorId: "ida", stops: [
         { stopId: "casem", time: 575 }, { stopId: "esi", time: 581 } ] },
       // Un sábado cualquiera, para comprobar el filtrado por frecuencia.
-      { lineId: "m030", days: "S", stops: [
+      { lineId: "m030", days: "S", corridorId: "ida", stops: [
         { stopId: "casa", time: 600 }, { stopId: "casem", time: 625 } ] },
     ],
     walkLinks: [
@@ -100,7 +103,7 @@ test("no devuelve nada si no sale nada en la ventana", () => {
 test("la vuelta desde la ESI puede empezar andando al CASEM", () => {
   const s = makeSchedule();
   s.trips = [
-    { lineId: "m030", days: "L-V", stops: [
+    { lineId: "m030", days: "L-V", corridorId: "ida", stops: [
       { stopId: "casem", time: 1000 }, { stopId: "casa", time: 1025 } ] },
   ];
   const r = plan({ schedule: s, date: MARTES, origin: "esi",
@@ -170,9 +173,9 @@ test("parseTime y formatTime", () => {
 test("los tramos a pie se retrasan hasta justo antes del enlace", () => {
   const s = makeSchedule();
   s.trips = [
-    { lineId: "m030", days: "L-V", stops: [
+    { lineId: "m030", days: "L-V", corridorId: "ida", stops: [
       { stopId: "casem", time: 1000 }, { stopId: "casa", time: 1025 } ] },
-    { lineId: "m030", days: "L-V", stops: [
+    { lineId: "m030", days: "L-V", corridorId: "ida", stops: [
       { stopId: "casem", time: 1060 }, { stopId: "casa", time: 1085 } ] },
   ];
   const r = plan({ schedule: s, date: MARTES, origin: "esi",
@@ -193,11 +196,36 @@ test("los tramos a pie se retrasan hasta justo antes del enlace", () => {
 test("un tramo a pie final no se retrasa: interesa llegar cuanto antes", () => {
   const s = makeSchedule();
   s.trips = [
-    { lineId: "m030", days: "L-V", stops: [
+    { lineId: "m030", days: "L-V", corridorId: "ida", stops: [
       { stopId: "casa", time: 540 }, { stopId: "casem", time: 565 } ] },
   ];
   const r = plan({ schedule: s, date: MARTES, origin: "casa",
                    destinations: ["esi"], earliestBoarding: 480 });
   assert.equal(r.length, 1);
   assert.equal(r[0]!.arrive, 565 + 18);
+});
+
+test("un día entero se resuelve rápido y da una lista útil", () => {
+  const s = makeSchedule();
+  // 120 expediciones repartidas por todo el día, como el horario real.
+  s.trips = [];
+  for (let t = 6 * 60; t < 23 * 60; t += 20) {
+    s.trips.push({ lineId: "m030", days: "L-V", corridorId: "ida", stops: [
+      { stopId: "casa", time: t }, { stopId: "casem", time: t + 25 } ] });
+    if (t % 60 === 0) {
+      s.trips.push({ lineId: "m967", days: "L-V", corridorId: "ida", stops: [
+        { stopId: "casem", time: t + 30 }, { stopId: "esi", time: t + 35 } ] });
+    }
+  }
+  const t0 = Date.now();
+  const r = plan({ schedule: s, date: MARTES, origin: "casa", destinations: ["esi"],
+                   earliestBoarding: 0, windowMinutes: 1440 });
+  const ms = Date.now() - t0;
+  assert.ok(r.length > 10, `deberia haber muchas opciones, hay ${r.length}`);
+  assert.ok(ms < 1000, `ha tardado ${ms} ms`);
+  // Siguen saliendo ordenadas y sin dominadas.
+  for (let i = 1; i < r.length; i++) {
+    assert.ok(r[i]!.depart >= r[i - 1]!.depart);
+    assert.ok(r[i]!.arrive > r[i - 1]!.arrive);
+  }
 });

@@ -103,15 +103,36 @@ export function plan(options: PlanOptions): Itinerary[] {
     const last = legs[legs.length - 1];
     const readyToBoard = last?.kind === "ride" ? time + minTransfer : time;
 
+    let candidatos: RideLeg[] = [];
     for (const trip of trips) {
       for (const ride of ridesFromStop(trip, stopId)) {
         if (ride.depart < readyToBoard || ride.depart > horizon) continue;
         // Volver a la parada de la que acabamos de salir nunca ayuda.
         if (legs.some((l) => l.from === ride.to)) continue;
-        legs.push(ride);
-        visit(ride.to, ride.arrive, legs);
-        legs.pop();
+        candidatos.push(ride);
       }
+    }
+
+    // Una vez cogido el primer bus la hora de salida del itinerario ya esta
+    // fijada, asi que de cada parada alcanzable solo interesa el enlace que
+    // llega antes: cualquier otro ofrece menos opciones despues. Sin esta
+    // poda, mirar un dia entero se vuelve inviable.
+    //
+    // Mientras solo se haya andado no vale, porque tighten() puede retrasar
+    // esos tramos: ahi cada bus posterior es una salida distinta de verdad.
+    if (legs.some((l) => l.kind === "ride")) {
+      const mejorPorDestino = new Map<StopId, RideLeg>();
+      for (const ride of candidatos) {
+        const previo = mejorPorDestino.get(ride.to);
+        if (!previo || ride.arrive < previo.arrive) mejorPorDestino.set(ride.to, ride);
+      }
+      candidatos = [...mejorPorDestino.values()];
+    }
+
+    for (const ride of candidatos) {
+      legs.push(ride);
+      visit(ride.to, ride.arrive, legs);
+      legs.pop();
     }
 
     // Dos tramos andando seguidos no tienen sentido.
