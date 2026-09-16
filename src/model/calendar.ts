@@ -90,23 +90,34 @@ export function periodFor(date: Date, periods: readonly Period[]): Period | unde
 /**
  * Las expediciones que circulan en una fecha.
  *
- * Si el horario trae periodos, se filtra tambien por el que este vigente. Si
- * no trae ninguno (la fuente no siempre los da), no se filtra por periodo: es
- * preferible enseñar el horario que se tiene, avisando, a no enseñar nada.
+ * Una expedicion con periodo solo circula dentro de sus fechas: asi una linea
+ * que arranca a mitad de curso no aparece antes de tiempo. Las que no traen
+ * periodo se dan por vigentes siempre, porque la fuente no siempre lo dice y
+ * es preferible enseñar el horario que se tiene, avisando, a no enseñar nada.
  */
 export function tripsForDate(schedule: Schedule, date: Date): Trip[] {
-  const period = schedule.periods.length > 0 ? periodFor(date, schedule.periods) : undefined;
+  const iso = isoDate(date);
+  const periodos = new Map(schedule.periods.map((p) => [p.id, p]));
   return schedule.trips.filter((t) => {
-    if (period && t.periodId && t.periodId !== period.id) return false;
+    if (t.periodId) {
+      const p = periodos.get(t.periodId);
+      if (!p || iso < p.from || iso > p.to) return false;
+    }
     return frequencyMatches(t.days, date, schedule.holidays);
   });
 }
 
 /**
- * true si la fecha cae fuera de todos los periodos conocidos, es decir, los
- * datos se han quedado viejos. Con periods vacío no se puede saber, asi que
- * devuelve false y el aviso correspondiente va por otro lado.
+ * true si los datos no cubren esa fecha, es decir, se han quedado viejos.
+ *
+ * Solo se puede afirmar cuando TODAS las expediciones estan atadas a un
+ * periodo. Si alguna no lo esta, esa sigue valiendo para cualquier fecha y el
+ * horario no esta caducado, por mucho que los periodos declarados no lleguen
+ * a ese dia: es justo lo que pasa cuando se mezcla una fuente que trae
+ * periodos con otra que no.
  */
 export function outOfCoverage(schedule: Schedule, date: Date): boolean {
-  return schedule.periods.length > 0 && periodFor(date, schedule.periods) === undefined;
+  if (schedule.periods.length === 0) return false;
+  if (schedule.trips.some((t) => !t.periodId)) return false;
+  return periodFor(date, schedule.periods) === undefined;
 }

@@ -150,10 +150,18 @@ test("las frecuencias de CTAN se resuelven bien", () => {
   assert.equal(frequencyMatches("-", MARTES, h), false);
 });
 
-test("sin periodos declarados nunca se considera fuera de cobertura", () => {
+test("fuera de cobertura solo cuando todas las expediciones tienen periodo", () => {
   const s = makeSchedule();
   assert.equal(outOfCoverage(s, new Date(2030, 0, 1)), false);
+
+  // Con un periodo declarado pero expediciones sin periodo, el horario sigue
+  // valiendo: es el caso de mezclar una fuente que trae periodos con otra que
+  // no, y darlo por caducado dejaría la app en blanco.
   s.periods = [{ id: "p", name: "Curso", from: "2026-09-01", to: "2027-06-30" }];
+  assert.equal(outOfCoverage(s, new Date(2030, 0, 1)), false);
+
+  // En cuanto todas lo tienen, sí se puede afirmar.
+  for (const t of s.trips) t.periodId = "p";
   assert.equal(outOfCoverage(s, new Date(2030, 0, 1)), true);
   assert.equal(outOfCoverage(s, MARTES), false);
 });
@@ -229,4 +237,24 @@ test("un día entero se resuelve rápido y da una lista útil", () => {
     assert.ok(r[i]!.depart >= r[i - 1]!.depart);
     assert.ok(r[i]!.arrive > r[i - 1]!.arrive);
   }
+});
+
+test("una línea con periodo no circula antes de su fecha de arranque", () => {
+  const s = makeSchedule();
+  s.periods = [{ id: "nuevo", name: "Desde el 21", from: "2026-09-21", to: "9999-12-31" }];
+  s.trips = [
+    // La de siempre, sin periodo: circula cualquier laborable.
+    { lineId: "m030", days: "L-V", corridorId: "vuelta", stops: [
+      { stopId: "esi", time: 900 }, { stopId: "casa", time: 940 } ] },
+    // La nueva, que no existe hasta el 21.
+    { lineId: "m967", days: "L-J", corridorId: "vuelta", periodId: "nuevo", stops: [
+      { stopId: "esi", time: 1210 }, { stopId: "casa", time: 1225 } ] },
+  ];
+  const codigos = (d: Date) => tripsForDate(s, d).map((t) => t.lineId).sort();
+  // Viernes 18 de septiembre: aún no ha arrancado.
+  assert.deepEqual(codigos(new Date(2026, 8, 18)), ["m030"]);
+  // Lunes 21: ya circula.
+  assert.deepEqual(codigos(new Date(2026, 8, 21)), ["m030", "m967"]);
+  // Viernes 25: la nueva es L-J, así que ese día no sale.
+  assert.deepEqual(codigos(new Date(2026, 8, 25)), ["m030"]);
 });

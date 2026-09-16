@@ -18,6 +18,7 @@ Solo necesita Python 3.8 o superior.
 from __future__ import annotations
 
 import argparse
+import glob
 import datetime
 import gzip
 import io
@@ -68,6 +69,22 @@ LINEAS_ESPERADAS = {
     "M-035": "Cádiz-Escuela de Ingeniería, arranca a mitad de septiembre",
 }
 
+# Salvedades que no se pueden deducir de los datos y hay que escribir a mano.
+# Se quitan cuando dejen de ser ciertas.
+AVISOS_EXTRA = [
+    "Las líneas M-037 y M-038 cambian el 21 de septiembre de 2026 y los "
+    "horarios que hay aquí son los anteriores. Conviene regenerarlos a partir "
+    "de esa fecha.",
+]
+
+# horarios_lineas devuelve el identificador interno de CTAN, no el código
+# público, así que hace falta la correspondencia.
+LINEAS_POR_CTAN = {
+    "220": "M-035", "6": "M-030", "9": "M-031", "10": "M-032", "11": "M-033",
+    "12": "M-034", "239": "M-036", "240": "M-037", "267": "M-038", "14": "M-041",
+    "18": "M-052", "20": "M-061", "38": "M-904", "163": "M-960", "225": "M-967",
+}
+
 # Festivos de fecha fija en Andalucía. Los de fecha variable (Semana Santa) y
 # los locales de Cádiz y Puerto Real NO están: hay que añadirlos a mano en
 # src/data/festivos.json. La app avisa de esto en pantalla.
@@ -110,6 +127,77 @@ def desde_volcado(carpeta: Path, origen: str, destino: str) -> dict:
     if not f.exists():
         raise SystemExit(f"No encuentro {f}. ¿Es la carpeta del volcado correcta?")
     return json.loads(f.read_text(encoding="utf-8"))
+
+
+def normalizar_lineas(carpeta: Path, stops: dict, lines: dict, trips: list,
+                      periods: dict, solo: set | None = None) -> int:
+    """Lee las respuestas de horarios_lineas de un volcado.
+
+    A diferencia de horarios_origen_destino, aquí el horario va dentro de cada
+    "planificador", que es el periodo de vigencia. Eso permite saber desde qué
+    fecha circula cada expedición, y es lo que hace falta para una línea que
+    arranca a mitad de curso.
+
+    Las respuestas de varias fechas se solapan a propósito (dia/mes filtra
+    también por día de la semana), así que hay que quitar duplicados.
+    """
+    vistas: set = set()
+    añadidas = 0
+    for fichero in sorted(glob.glob(str(carpeta / "*horarios_lineas*"))):
+        m = re.search(r"linea_(\d+)_", fichero)
+        if not m:
+            continue
+        ctan_id = m.group(1)
+        if solo is not None and LINEAS_POR_CTAN.get(ctan_id) not in solo:
+            continue
+        try:
+            data = json.loads(Path(fichero).read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        for pl in (data.get("planificadores") or []):
+            periodo_id = f"plan-{pl.get('idPlani')}"
+            if periodo_id not in periods:
+                periods[periodo_id] = {
+                    "id": periodo_id,
+                    "name": f"Desde el {pl.get('fechaInicio')}",
+                    "from": pl.get("fechaInicio") or "0000-01-01",
+                    # Un planificador sin fecha de fin sigue vigente.
+                    "to": pl.get("fechaFin") or "9999-12-31",
+                }
+            for sentido, corredor in (("Ida", "ida"), ("Vuelta", "vuelta")):
+                bloques = pl.get(f"bloques{sentido}") or []
+                # tipo "0" son paradas; "1" es la frecuencia y "2" las observaciones.
+                columnas = [b.get("nombre") for b in bloques if str(b.get("tipo")) == "0"]
+                ids = [IDS.get(c, slug(c)) for c in columnas]
+                for idp, nombre in zip(ids, columnas):
+                    stops.setdefault(idp, {"id": idp, "name": NOMBRES_CORTOS.get(idp, nombre),
+                                           "officialName": nombre})
+                for fila in (pl.get(f"horario{sentido}") or []):
+                    horas = fila.get("horas", [])
+                    if len(horas) != len(ids):
+                        continue  # fila que no cuadra con la cabecera: se descarta
+                    paradas = [{"stopId": i, "time": parse_hora(h)}
+                               for i, h in zip(ids, horas) if parse_hora(h) is not None]
+                    if len(paradas) < 2:
+                        continue
+                    dias = (fila.get("frecuencia") or fila.get("dias") or "").strip()
+                    firma = (ctan_id, periodo_id, corredor, dias,
+                             tuple((p["stopId"], p["time"]) for p in paradas))
+                    if firma in vistas:
+                        continue
+                    vistas.add(firma)
+                    codigo = LINEAS_POR_CTAN.get(ctan_id, f"linea-{ctan_id}")
+                    idl = slug(codigo)
+                    lines.setdefault(idl, {"id": idl, "code": codigo, "name": codigo,
+                                           "ctanId": ctan_id})
+                    viaje = {"lineId": idl, "days": dias, "corridorId": corredor,
+                             "periodId": periodo_id, "stops": paradas}
+                    obs = (fila.get("observaciones") or "").strip()
+                    if obs:
+                        viaje["notes"] = obs
+                    trips.append(viaje)
+                    añadidas += 1
+    return añadidas
 
 
 def normalizar(tabla: dict, stops: dict, lines: dict, trips: list,
@@ -172,7 +260,14 @@ def normalizar(tabla: dict, stops: dict, lines: dict, trips: list,
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--desde-volcado", metavar="CARPETA",
-                    help="lee de un volcado local en vez de la API")
+                    help="lee el corredor de un volcado local en vez de la API")
+    ap.add_argument("--lineas-desde", metavar="CARPETA", action="append", default=[],
+                    help="añade horarios por línea desde un volcado de horarios_lineas "
+                         "(se puede repetir)")
+    ap.add_argument("--solo", metavar="CODIGOS",
+                    help="al leer horarios por línea, quedarse solo con estos códigos, "
+                         "separados por comas. Sus expediciones sustituyen a las que "
+                         "venían del corredor, para no duplicarlas.")
     args = ap.parse_args()
 
     leer = (lambda o, d: desde_volcado(Path(args.desde_volcado), o, d)) if args.desde_volcado else descargar
@@ -186,9 +281,23 @@ def main() -> int:
     lines: dict = {}
     trips: list = []
     corredores: list = []
+    periodos: dict = {}
     n_ida = normalizar(ida, stops, lines, trips, "ida", "Cádiz → Campus", corredores)
     n_vuelta = normalizar(vuelta, stops, lines, trips, "vuelta", "Campus → Cádiz", corredores)
     print(f"  {n_ida} expediciones de ida, {n_vuelta} de vuelta")
+
+    solo = {c.strip() for c in args.solo.split(",")} if args.solo else None
+    if solo:
+        # Lo que venga del volcado por línea manda: trae periodo de vigencia y
+        # está más al día que la tabla del corredor.
+        ids_fuera = {l["id"] for l in lines.values() if l["code"] in solo}
+        antes = len(trips)
+        trips[:] = [t for t in trips if t["lineId"] not in ids_fuera]
+        if antes != len(trips):
+            print(f"  {antes - len(trips)} expediciones del corredor sustituidas ({', '.join(sorted(solo))})")
+    for carpeta in args.lineas_desde:
+        n = normalizar_lineas(Path(carpeta), stops, lines, trips, periodos, solo)
+        print(f"  {n} expediciones más desde {carpeta}")
 
     # Solo nos quedamos con las paradas por las que pasa algo.
     usadas = {p["stopId"] for t in trips for p in t["stops"]}
@@ -215,6 +324,8 @@ def main() -> int:
         "al empezar el curso y al empezar el verano."
     )
 
+    avisos.extend(AVISOS_EXTRA)
+
     presentes = {l["code"] for l in lines.values()}
     faltan = [
         {"code": c, "note": m}
@@ -234,7 +345,7 @@ def main() -> int:
         "stops": sorted(stops.values(), key=lambda s: s["id"]),
         "lines": sorted(lines.values(), key=lambda l: l["code"]),
         "corridors": corredores,
-        "periods": [],
+        "periods": sorted(periodos.values(), key=lambda p: p["from"]),
         "trips": trips,
         "walkLinks": [
             {"from": "esi", "to": "casem", "minutes": ANDANDO_ESI_CASEM},

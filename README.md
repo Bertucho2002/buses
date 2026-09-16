@@ -82,7 +82,8 @@ que los horarios coinciden con los que se publican de cara al público.
 
 ```bash
 python3 scripts/generar-horario.py                      # desde la API
-python3 scripts/generar-horario.py --desde-volcado ctan-dump2   # sin red
+python3 scripts/generar-horario.py --desde-volcado ctan-dump2 \
+    --lineas-desde ctan-dump3 --solo M-035               # sin red
 ```
 
 Los horarios salen de `horarios_origen_destino` entre el núcleo de Cádiz (`1`)
@@ -106,16 +107,15 @@ muchas veces sale mejor enlazar que andar los 18.
 - [ ] **Festivos.** Ahora solo están los de fecha fija. Faltan la Semana Santa
       y los locales de Cádiz y Puerto Real. Se añaden a mano en el campo
       `holidays` de `schedule.json` (o mejor, en el script que lo genera).
-- [ ] **La línea M-035** (Cádiz - Escuela de Ingeniería), que arranca a mitad
-      de septiembre y va directa a la ESI. No sale en `horarios_origen_destino`
-      porque ese endpoint solo devuelve lo vigente el día que se consulta. Hay
-      que sacarla de `horarios_lineas?linea=220`. Mientras tanto la app avisa
-      en pantalla de que le faltan buses.
-- [ ] **Periodos de vigencia.** `horarios_origen_destino` no dice a qué
-      planificador pertenece cada horario, así que la app no distingue el
-      horario de curso del de verano. Para arreglarlo hay que cruzar con
-      `horarios_lineas?linea=...`, que sí devuelve `planificadores` con fecha
-      de inicio y fin.
+- [ ] **Rehacer el horario a partir del 21 de septiembre de 2026.** Ese día
+      entra un horario nuevo: arrancan la M-035, la M-037 y la M-038. La M-035
+      ya está metida, pero el resto del corredor viene de un volcado del día 16
+      y por tanto es el horario anterior. `scripts/descargar-ctan-4.py` baja la
+      semana completa del horario nuevo; con eso se regenera todo.
+- [ ] **Periodos de vigencia del resto de líneas.** La M-035 ya los trae. Las
+      demás vienen de `horarios_origen_destino`, que no dice a qué planificador
+      pertenece cada horario, así que la app todavía no distingue el horario de
+      curso del de verano para ellas.
 - [ ] **Contrastar con la web del consorcio** (`siu.cmtbc.es`) que los horarios
       coinciden con los que publican de cara al público.
 - [ ] **Lanzaderas de la UCA.** Entre las 70 líneas del consorcio no hay

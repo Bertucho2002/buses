@@ -109,6 +109,24 @@ Varias frecuencias pueden aplicar al mismo día (un martes lectivo encaja en
 L-V, L-S, L-D y L-J a la vez), así que el horario de un día es la **unión** de
 todas las salidas cuya frecuencia case con esa fecha.
 
+### La tabla va DENTRO del planificador
+
+El detalle que más tiempo costó: en `horarios_lineas` el horario **no está en
+el nivel de arriba** de la respuesta. Ahí solo hay `planificadores`,
+`frecuencias`, `horaCorte` y `observacionesModoTransporte`. Las tablas
+(`bloquesIda`, `horarioIda`, `bloquesVuelta`, `horarioVuelta`) van **dentro de
+cada elemento de `planificadores`**, junto con su `idPlani` y sus fechas.
+
+### `dia` y `mes` filtran también por día de la semana
+
+No seleccionan solo el periodo vigente: devuelven **los servicios que circulan
+esa fecha concreta**. Preguntar por un lunes da los de lunes. Para reconstruir
+la semana entera hay que sondear un día de cada tipo (un laborable, un
+viernes, un sábado y un domingo), porque si no se pierden las frecuencias que
+solo aplican a algunos días.
+
+Una línea que aún no ha arrancado devuelve `planificadores: []`.
+
 ## Trampas encontradas
 
 - **`/paradas/:id/servicios` no lista las líneas de la parada**, lista los
@@ -134,6 +152,18 @@ Mencionan el campus en el nombre y están sin comprobar:
 
 `240` M-037 (Cádiz-Campus por CA-35), `14` M-041, `18` M-052, `20` M-061,
 `163` M-960, `225` M-967.
+
+### Periodos reales encontrados
+
+| Línea | Periodo |
+| --- | --- |
+| M-035, M-037, M-038 | desde `2026-09-21`, sin fecha de fin |
+| M-031, M-032, M-960, M-967 | desde `2026-09-01` |
+| M-030 | desde `2025-01-07` |
+| M-031 (verano) | `2026-08-01` → `2026-08-31` |
+| M-960 (verano) | `2026-07-01` → `2026-08-31` |
+
+O sea que los periodos existen y son por línea, no globales del consorcio.
 
 **No hay ninguna línea con "lanzadera" en el nombre** entre las 70 del
 consorcio. Es un indicio de que las lanzaderas ESI↔CASEM son un servicio

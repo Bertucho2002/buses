@@ -1,18 +1,14 @@
 {
- "generatedAt": "2026-09-16T20:52:00+00:00",
+ "generatedAt": "2026-09-16T21:03:47+00:00",
  "source": "api.ctan.es · Consorcio 2 (Bahía de Cádiz) · horarios_origen_destino 1<->41",
  "isSample": false,
  "warnings": [
   "Los horarios son los oficiales publicados. No es posición en tiempo real.",
   "Faltan los festivos de fecha variable (Semana Santa) y los locales de Cádiz y Puerto Real. En esos días el horario mostrado puede no valer.",
-  "Estos datos no traen periodo de vigencia, así que la app no puede distinguir el horario de curso del de verano. Conviene regenerarlos al empezar el curso y al empezar el verano."
+  "Estos datos no traen periodo de vigencia, así que la app no puede distinguir el horario de curso del de verano. Conviene regenerarlos al empezar el curso y al empezar el verano.",
+  "Las líneas M-037 y M-038 cambian el 21 de septiembre de 2026 y los horarios que hay aquí son los anteriores. Conviene regenerarlos a partir de esa fecha."
  ],
- "missingLines": [
-  {
-   "code": "M-035",
-   "note": "Cádiz-Escuela de Ingeniería, arranca a mitad de septiembre"
-  }
- ],
+ "missingLines": [],
  "stops": [
   {
    "id": "avda-las-cortes",
@@ -50,6 +46,11 @@
    "officialName": "Pz. España"
   },
   {
+   "id": "rio-s-pedro",
+   "name": "Río S. Pedro",
+   "officialName": "Río S. Pedro"
+  },
+  {
    "id": "telegrafia",
    "name": "Telegrafía",
    "officialName": "Telegrafía-Estadio"
@@ -73,6 +74,12 @@
    "code": "M-032",
    "name": "M-032",
    "ctanId": "10"
+  },
+  {
+   "id": "m-035",
+   "code": "M-035",
+   "name": "M-035",
+   "ctanId": "220"
   },
   {
    "id": "m-036",
@@ -153,7 +160,14 @@
    ]
   }
  ],
- "periods": [],
+ "periods": [
+  {
+   "id": "plan-1596",
+   "name": "Desde el 2026-09-21",
+   "from": "2026-09-21",
+   "to": "9999-12-31"
+  }
+ ],
  "trips": [
   {
    "lineId": "m-031",
@@ -5132,6 +5146,130 @@
     }
    ],
    "notes": "SERVICIO ADAPTADO A PMR (S)"
+  },
+  {
+   "lineId": "m-035",
+   "days": "L-V",
+   "corridorId": "ida",
+   "periodId": "plan-1596",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 460
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 468
+    },
+    {
+     "stopId": "rio-s-pedro",
+     "time": 475
+    },
+    {
+     "stopId": "casem",
+     "time": 480
+    },
+    {
+     "stopId": "esi",
+     "time": 485
+    }
+   ]
+  },
+  {
+   "lineId": "m-035",
+   "days": "L-V",
+   "corridorId": "vuelta",
+   "periodId": "plan-1596",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 880
+    },
+    {
+     "stopId": "casem",
+     "time": 885
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 895
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 897
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 899
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 904
+    }
+   ]
+  },
+  {
+   "lineId": "m-035",
+   "days": "L-J",
+   "corridorId": "vuelta",
+   "periodId": "plan-1596",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 1210
+    },
+    {
+     "stopId": "casem",
+     "time": 1215
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1225
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1227
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1229
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1234
+    }
+   ]
+  },
+  {
+   "lineId": "m-035",
+   "days": "L-J",
+   "corridorId": "vuelta",
+   "periodId": "plan-1596",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 1275
+    },
+    {
+     "stopId": "casem",
+     "time": 1280
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1290
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1292
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1294
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1300
+    }
+   ]
   }
  ],
  "walkLinks": [
