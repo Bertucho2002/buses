@@ -267,6 +267,12 @@ function render(): void {
       ? `<div class="banner"><strong>Datos de ejemplo.</strong> Estos horarios están inventados para poder desarrollar la app. Todavía no son los del consorcio.</div>`
       : ""}
 
+    ${schedule.missingLines.length > 0
+      ? `<div class="banner aviso"><strong>Faltan buses.</strong> ${schedule.missingLines
+          .map((l) => `La línea <strong>${l.code}</strong> (${l.note}) no está en estos horarios`)
+          .join(". ")}. Mira el horario oficial antes de fiarte.</div>`
+      : ""}
+
     ${frecuenciasRaras.length > 0
       ? `<div class="banner">No se muestran las salidas con frecuencia ${frecuenciasRaras
           .map((f) => `<code>${f}</code>`)

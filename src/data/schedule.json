@@ -1,11 +1,17 @@
 {
- "generatedAt": "2026-09-16T20:27:55+00:00",
+ "generatedAt": "2026-09-16T20:52:00+00:00",
  "source": "api.ctan.es · Consorcio 2 (Bahía de Cádiz) · horarios_origen_destino 1<->41",
  "isSample": false,
  "warnings": [
   "Los horarios son los oficiales publicados. No es posición en tiempo real.",
   "Faltan los festivos de fecha variable (Semana Santa) y los locales de Cádiz y Puerto Real. En esos días el horario mostrado puede no valer.",
   "Estos datos no traen periodo de vigencia, así que la app no puede distinguir el horario de curso del de verano. Conviene regenerarlos al empezar el curso y al empezar el verano."
+ ],
+ "missingLines": [
+  {
+   "code": "M-035",
+   "note": "Cádiz-Escuela de Ingeniería, arranca a mitad de septiembre"
+  }
  ],
  "stops": [
   {

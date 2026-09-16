@@ -115,6 +115,8 @@ table.horario td.freq { color: var(--muted); font-size: 0.75rem; }
 }
 .chips button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 
+.banner.aviso { border-left: 4px solid var(--warn-text); }
+
 .banner {
   background: var(--warn-bg); color: var(--warn-text);
   padding: 11px 14px; border-radius: var(--radius); margin-bottom: 16px; font-size: 0.86rem;

@@ -110,6 +110,12 @@ export interface Schedule {
    * vez de callarlas. Por ejemplo, que faltan los festivos locales.
    */
   warnings: string[];
+  /**
+   * Lineas que sabemos que existen pero que no estaban vigentes cuando se
+   * descargaron los datos. La app las avisa bien visibles, porque fiarse de
+   * un horario al que le faltan buses es justo como se pierde uno.
+   */
+  missingLines: { code: string; note: string }[];
   stops: Stop[];
   lines: Line[];
   corridors: Corridor[];

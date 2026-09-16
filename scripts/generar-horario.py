@@ -58,6 +58,16 @@ NOMBRES_CORTOS = {
 # Minutos andando entre las dos paradas del campus.
 ANDANDO_ESI_CASEM = 18
 
+# Líneas que sabemos que existen y que deberían salir en el horario. Si alguna
+# falta, el horario se genera igual pero avisando: es mejor decir que faltan
+# buses que dejar que la app parezca completa cuando no lo está.
+#
+# horarios_origen_destino solo devuelve lo vigente el día que se consulta, así
+# que una línea que arranca más adelante no aparece hasta que empieza.
+LINEAS_ESPERADAS = {
+    "M-035": "Cádiz-Escuela de Ingeniería, arranca a mitad de septiembre",
+}
+
 # Festivos de fecha fija en Andalucía. Los de fecha variable (Semana Santa) y
 # los locales de Cádiz y Puerto Real NO están: hay que añadirlos a mano en
 # src/data/festivos.json. La app avisa de esto en pantalla.
@@ -205,12 +215,22 @@ def main() -> int:
         "al empezar el curso y al empezar el verano."
     )
 
+    presentes = {l["code"] for l in lines.values()}
+    faltan = [
+        {"code": c, "note": m}
+        for c, m in sorted(LINEAS_ESPERADAS.items())
+        if c not in presentes
+    ]
+    for l in faltan:
+        print(f"  AVISO: falta la línea {l['code']} ({l['note']})")
+
     schedule = {
         "generatedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "source": f"api.ctan.es · Consorcio {CONSORCIO} (Bahía de Cádiz) · "
                   f"horarios_origen_destino {NUCLEO_CASA}<->{NUCLEO_CAMPUS}",
         "isSample": False,
         "warnings": avisos,
+        "missingLines": faltan,
         "stops": sorted(stops.values(), key=lambda s: s["id"]),
         "lines": sorted(lines.values(), key=lambda l: l["code"]),
         "corridors": corredores,

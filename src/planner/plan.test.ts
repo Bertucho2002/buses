@@ -24,6 +24,7 @@ function makeSchedule(): Schedule {
     source: "test",
     isSample: true,
     warnings: [],
+    missingLines: [],
     stops: [
       { id: "casa", name: "Casa", officialName: "Telegrafía-Estadio" },
       { id: "esi", name: "ESI", officialName: "Escuela Ingeniería" },

@@ -55,6 +55,7 @@ Se despliega solo en GitHub Pages al hacer push a `main`.
 | `scripts/descargar-ctan.py` | Reconocimiento de la API de CTAN. Se ejecuta a mano y vuelca todo en `ctan-dump/`. |
 | `scripts/explore-ctan.ts` | Lo mismo, en TypeScript, para cuando haya acceso desde la sesión. |
 | `scripts/generar-horario.py` | Descarga la API y genera `src/data/schedule.json`. |
+| `scripts/descargar-ctan-3.py` | Vuelca los horarios por línea, con periodos de vigencia. |
 | `scripts/make-sample-data.py` | Genera datos de ejemplo, por si hace falta desarrollar sin red. |
 | `NOTAS-API.md` | Cómo funciona la API de CTAN y dónde están sus trampas. |
 
@@ -105,6 +106,11 @@ muchas veces sale mejor enlazar que andar los 18.
 - [ ] **Festivos.** Ahora solo están los de fecha fija. Faltan la Semana Santa
       y los locales de Cádiz y Puerto Real. Se añaden a mano en el campo
       `holidays` de `schedule.json` (o mejor, en el script que lo genera).
+- [ ] **La línea M-035** (Cádiz - Escuela de Ingeniería), que arranca a mitad
+      de septiembre y va directa a la ESI. No sale en `horarios_origen_destino`
+      porque ese endpoint solo devuelve lo vigente el día que se consulta. Hay
+      que sacarla de `horarios_lineas?linea=220`. Mientras tanto la app avisa
+      en pantalla de que le faltan buses.
 - [ ] **Periodos de vigencia.** `horarios_origen_destino` no dice a qué
       planificador pertenece cada horario, así que la app no distingue el
       horario de curso del de verano. Para arreglarlo hay que cruzar con
