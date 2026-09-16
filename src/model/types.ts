@@ -1,78 +1,86 @@
 /**
  * Modelo de datos de la app.
  *
- * Este es el formato canonico interno: todo lo que venga de la API de CTAN
- * (o de donde sea) se normaliza a estas estructuras antes de guardarse en
- * src/data/schedule.json. La app no conoce ningun otro formato.
+ * Formato canonico interno: lo que viene de la API de CTAN se normaliza a
+ * estas estructuras en src/data/schedule.json. La app no conoce otro formato.
+ *
+ * Las paradas se corresponden con los "bloques" de la API, que es como
+ * agrupa las columnas de sus tablas de horarios. Coinciden con los nombres
+ * que usa la web del consorcio de cara al público.
  */
 
-/** Minutos desde medianoche. 8:30 -> 510. Puede pasar de 1440 si un viaje cruza la noche. */
+/** Minutos desde medianoche. 8:30 -> 510. Puede pasar de 1440 si cruza la noche. */
 export type Minutes = number;
 
 export type StopId = string;
 export type LineId = string;
-export type CalendarId = string;
-export type PeriodId = string;
-
-/** Tipo de dia al que corresponde un horario. */
-export type DayType = "laborable" | "sabado" | "domingo-festivo";
 
 export interface Stop {
   id: StopId;
   /** Nombre corto para la interfaz. */
   name: string;
-  /** Nombre tal y como lo publica el consorcio, para poder contrastar. */
+  /** Nombre del bloque tal y como lo publica el consorcio. */
   officialName: string;
-  /** Identificador en la API de CTAN, cuando lo conocemos. */
-  ctanId?: string;
 }
-
-export type LineKind = "bus" | "lanzadera";
 
 export interface Line {
   id: LineId;
-  /** Codigo publico de la linea, p. ej. "M-050". */
+  /** Codigo publico, p. ej. "M-030". */
   code: string;
   name: string;
-  kind: LineKind;
-  operator?: string;
+  /** Identificador de la linea en la API de CTAN. */
   ctanId?: string;
 }
 
 /**
- * Periodo de vigencia de un horario. El consorcio publica horarios distintos
- * en periodo lectivo y en verano, asi que un horario solo vale dentro de sus
- * fechas. Fechas en ISO (YYYY-MM-DD), ambas inclusive.
+ * Acronimo de frecuencia de CTAN. Dice que dias circula una expedicion.
+ *
+ *   L-V    lunes a viernes laborables
+ *   L-J    lunes a jueves laborables
+ *   L-S    lunes a sabados laborables
+ *   L-D    diario, festivos incluidos
+ *   V      viernes laborables
+ *   S      sabados laborables
+ *   D      domingos y festivos
+ *   D*     domingos y festivos de apertura comercial
+ *   S-D-F  sabados, domingos y festivos
+ *   -      dia suelto (sin fecha asociada: no se puede resolver)
+ *
+ * "Laborable" aqui significa que no es festivo. Un L-V no circula si el
+ * martes cae festivo.
+ */
+export type FrequencyCode = string;
+
+/**
+ * Periodo de vigencia de un horario, lo que la API llama "planificador".
+ * Fechas en ISO (YYYY-MM-DD), ambas inclusive.
  */
 export interface Period {
-  id: PeriodId;
+  id: string;
   name: string;
   from: string;
   to: string;
 }
 
-/** Un horario concreto = un periodo + un tipo de dia. */
-export interface Calendar {
-  id: CalendarId;
-  periodId: PeriodId;
-  dayType: DayType;
-}
-
-/** Paso de un viaje por una parada. */
 export interface TripStop {
   stopId: StopId;
   time: Minutes;
 }
 
-/** Una expedicion concreta: un autobus que sale a una hora y para donde para. */
+/** Una expedicion: un autobus concreto, las paradas por las que pasa y cuando. */
 export interface Trip {
   lineId: LineId;
-  calendarId: CalendarId;
-  /** Paradas en orden de recorrido, con hora de paso. */
+  /** Que dias circula. */
+  days: FrequencyCode;
+  /** Periodo al que pertenece, si se conoce. */
+  periodId?: string;
+  /** Texto del consorcio ("SERVICIO ADAPTADO A PMR", etc.). */
+  notes?: string;
+  /** Paradas en orden de recorrido. Solo las que sirve de verdad. */
   stops: TripStop[];
 }
 
-/** Enlace a pie entre dos paradas. Se asume simetrico salvo que se declare al reves. */
+/** Enlace a pie entre dos paradas. Hay que declarar los dos sentidos. */
 export interface WalkLink {
   from: StopId;
   to: StopId;
@@ -80,21 +88,21 @@ export interface WalkLink {
 }
 
 export interface Schedule {
-  /** Cuando se genero este fichero. */
   generatedAt: string;
-  /** De donde salieron los datos. */
   source: string;
-  /**
-   * true mientras sean datos de ejemplo inventados para poder desarrollar.
-   * La interfaz avisa en pantalla cuando esto esta puesto.
-   */
+  /** true mientras sean datos inventados. La interfaz avisa en pantalla. */
   isSample: boolean;
+  /**
+   * Salvedades conocidas de estos datos, para enseñarlas en la interfaz en
+   * vez de callarlas. Por ejemplo, que faltan los festivos locales.
+   */
+  warnings: string[];
   stops: Stop[];
   lines: Line[];
+  /** Puede venir vacio si la fuente no da informacion de periodos. */
   periods: Period[];
-  calendars: Calendar[];
   trips: Trip[];
   walkLinks: WalkLink[];
-  /** Festivos en ISO (YYYY-MM-DD). Se tratan como domingo. */
+  /** Festivos en ISO (YYYY-MM-DD). */
   holidays: string[];
 }

@@ -1,1509 +1,4965 @@
 {
-  "generatedAt": "2026-09-16T19:45:57+00:00",
-  "source": "DATOS DE EJEMPLO INVENTADOS — no son horarios reales",
-  "isSample": true,
-  "stops": [
+ "generatedAt": "2026-09-16T20:15:51+00:00",
+ "source": "api.ctan.es · Consorcio 2 (Bahía de Cádiz) · horarios_origen_destino 1<->41",
+ "isSample": false,
+ "warnings": [
+  "Los horarios son los oficiales publicados. No es posición en tiempo real.",
+  "Faltan los festivos de fecha variable (Semana Santa) y los locales de Cádiz y Puerto Real. En esos días el horario mostrado puede no valer.",
+  "Estos datos no traen periodo de vigencia, así que la app no puede distinguir el horario de curso del de verano. Conviene regenerarlos al empezar el curso y al empezar el verano."
+ ],
+ "stops": [
+  {
+   "id": "avda-las-cortes",
+   "name": "Avda. Las Cortes",
+   "officialName": "Avda. Las Cortes"
+  },
+  {
+   "id": "casem",
+   "name": "CASEM",
+   "officialName": "C. Educación/Facultad Ciencias"
+  },
+  {
+   "id": "esi",
+   "name": "ESI",
+   "officialName": "Escuela Ingeniería"
+  },
+  {
+   "id": "hospital-segunda-ag",
+   "name": "Hospital-Segunda Ag.",
+   "officialName": "Hospital-Segunda Ag."
+  },
+  {
+   "id": "plaza-de-sevilla-estacion-de-cadiz",
+   "name": "Plaza de Sevilla-Estación de Cádiz",
+   "officialName": "Plaza de Sevilla-Estación de Cádiz"
+  },
+  {
+   "id": "pz-asdrubal-s-sever",
+   "name": "Pz.Asdrúbal-S.Sever.",
+   "officialName": "Pz.Asdrúbal-S.Sever."
+  },
+  {
+   "id": "pz-espana",
+   "name": "Pz. España",
+   "officialName": "Pz. España"
+  },
+  {
+   "id": "telegrafia",
+   "name": "Telegrafía",
+   "officialName": "Telegrafía-Estadio"
+  }
+ ],
+ "lines": [
+  {
+   "id": "m-030",
+   "code": "M-030",
+   "name": "M-030",
+   "ctanId": "6"
+  },
+  {
+   "id": "m-031",
+   "code": "M-031",
+   "name": "M-031",
+   "ctanId": "9"
+  },
+  {
+   "id": "m-032",
+   "code": "M-032",
+   "name": "M-032",
+   "ctanId": "10"
+  },
+  {
+   "id": "m-036",
+   "code": "M-036",
+   "name": "M-036",
+   "ctanId": "239"
+  },
+  {
+   "id": "m-037",
+   "code": "M-037",
+   "name": "M-037",
+   "ctanId": "240"
+  },
+  {
+   "id": "m-041",
+   "code": "M-041",
+   "name": "M-041",
+   "ctanId": "14"
+  },
+  {
+   "id": "m-052",
+   "code": "M-052",
+   "name": "M-052",
+   "ctanId": "18"
+  },
+  {
+   "id": "m-061",
+   "code": "M-061",
+   "name": "M-061",
+   "ctanId": "20"
+  },
+  {
+   "id": "m-904",
+   "code": "M-904",
+   "name": "M-904",
+   "ctanId": "38"
+  },
+  {
+   "id": "m-960",
+   "code": "M-960",
+   "name": "M-960",
+   "ctanId": "163"
+  },
+  {
+   "id": "m-967",
+   "code": "M-967",
+   "name": "M-967",
+   "ctanId": "225"
+  }
+ ],
+ "periods": [],
+ "trips": [
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
     {
-      "id": "telegrafia",
-      "name": "Telegrafía",
-      "officialName": "Telegrafía Sin Hilos"
+     "stopId": "pz-espana",
+     "time": 360
     },
     {
-      "id": "esi",
-      "name": "ESI",
-      "officialName": "Escuela Ingeniería"
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 362
     },
     {
-      "id": "casem",
-      "name": "CASEM",
-      "officialName": "C. Educación/Facultad Ciencias"
+     "stopId": "telegrafia",
+     "time": 373
+    },
+    {
+     "stopId": "casem",
+     "time": 386
     }
-  ],
-  "lines": [
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
     {
-      "id": "linea-campus",
-      "code": "EJEMPLO-1",
-      "name": "Cádiz – Campus Puerto Real",
-      "kind": "bus"
+     "stopId": "pz-espana",
+     "time": 380
     },
     {
-      "id": "lanzadera",
-      "code": "EJEMPLO-L",
-      "name": "Lanzadera CASEM – ESI",
-      "kind": "lanzadera"
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 382
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 386
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 390
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 393
+    },
+    {
+     "stopId": "casem",
+     "time": 407
     }
-  ],
-  "periods": [
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
     {
-      "id": "lectivo",
-      "name": "Periodo lectivo",
-      "from": "2026-09-01",
-      "to": "2027-06-30"
+     "stopId": "pz-espana",
+     "time": 400
     },
     {
-      "id": "verano",
-      "name": "Verano",
-      "from": "2027-07-01",
-      "to": "2027-08-31"
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 402
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 406
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 410
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 413
+    },
+    {
+     "stopId": "casem",
+     "time": 427
     }
-  ],
-  "calendars": [
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
     {
-      "id": "lectivo-laborable",
-      "periodId": "lectivo",
-      "dayType": "laborable"
+     "stopId": "pz-espana",
+     "time": 420
     },
     {
-      "id": "lectivo-sabado",
-      "periodId": "lectivo",
-      "dayType": "sabado"
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 422
     },
     {
-      "id": "lectivo-domingo-festivo",
-      "periodId": "lectivo",
-      "dayType": "domingo-festivo"
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 426
     },
     {
-      "id": "verano-laborable",
-      "periodId": "verano",
-      "dayType": "laborable"
+     "stopId": "hospital-segunda-ag",
+     "time": 430
     },
     {
-      "id": "verano-sabado",
-      "periodId": "verano",
-      "dayType": "sabado"
+     "stopId": "telegrafia",
+     "time": 433
     },
     {
-      "id": "verano-domingo-festivo",
-      "periodId": "verano",
-      "dayType": "domingo-festivo"
+     "stopId": "casem",
+     "time": 447
     }
-  ],
-  "trips": [
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
     {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 435
-        },
-        {
-          "stopId": "casem",
-          "time": 460
-        },
-        {
-          "stopId": "esi",
-          "time": 467
-        }
-      ]
+     "stopId": "pz-espana",
+     "time": 420
     },
     {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 465
-        },
-        {
-          "stopId": "casem",
-          "time": 490
-        },
-        {
-          "stopId": "esi",
-          "time": 497
-        }
-      ]
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 422
     },
     {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 495
-        },
-        {
-          "stopId": "casem",
-          "time": 520
-        },
-        {
-          "stopId": "esi",
-          "time": 527
-        }
-      ]
+     "stopId": "telegrafia",
+     "time": 433
     },
     {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 525
-        },
-        {
-          "stopId": "casem",
-          "time": 550
-        },
-        {
-          "stopId": "esi",
-          "time": 557
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 555
-        },
-        {
-          "stopId": "casem",
-          "time": 580
-        },
-        {
-          "stopId": "esi",
-          "time": 587
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 585
-        },
-        {
-          "stopId": "casem",
-          "time": 610
-        },
-        {
-          "stopId": "esi",
-          "time": 617
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 615
-        },
-        {
-          "stopId": "casem",
-          "time": 640
-        },
-        {
-          "stopId": "esi",
-          "time": 647
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 675
-        },
-        {
-          "stopId": "casem",
-          "time": 700
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 735
-        },
-        {
-          "stopId": "casem",
-          "time": 760
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 795
-        },
-        {
-          "stopId": "casem",
-          "time": 820
-        },
-        {
-          "stopId": "esi",
-          "time": 827
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 855
-        },
-        {
-          "stopId": "casem",
-          "time": 880
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 915
-        },
-        {
-          "stopId": "casem",
-          "time": 940
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 975
-        },
-        {
-          "stopId": "casem",
-          "time": 1000
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 1035
-        },
-        {
-          "stopId": "casem",
-          "time": 1060
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 1095
-        },
-        {
-          "stopId": "casem",
-          "time": 1120
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 1155
-        },
-        {
-          "stopId": "casem",
-          "time": 1180
-        },
-        {
-          "stopId": "esi",
-          "time": 1187
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 1215
-        },
-        {
-          "stopId": "casem",
-          "time": 1240
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 490
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 515
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 550
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 575
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 610
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 635
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 790
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 815
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 850
-        },
-        {
-          "stopId": "casem",
-          "time": 857
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 882
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 910
-        },
-        {
-          "stopId": "casem",
-          "time": 917
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 942
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 970
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 995
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1030
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1055
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1090
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1115
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1150
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1175
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1210
-        },
-        {
-          "stopId": "casem",
-          "time": 1217
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1242
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1270
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1295
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 485
-        },
-        {
-          "stopId": "esi",
-          "time": 491
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 485
-        },
-        {
-          "stopId": "casem",
-          "time": 491
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 515
-        },
-        {
-          "stopId": "esi",
-          "time": 521
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 515
-        },
-        {
-          "stopId": "casem",
-          "time": 521
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 545
-        },
-        {
-          "stopId": "esi",
-          "time": 551
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 545
-        },
-        {
-          "stopId": "casem",
-          "time": 551
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 575
-        },
-        {
-          "stopId": "esi",
-          "time": 581
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 575
-        },
-        {
-          "stopId": "casem",
-          "time": 581
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 605
-        },
-        {
-          "stopId": "esi",
-          "time": 611
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 605
-        },
-        {
-          "stopId": "casem",
-          "time": 611
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 635
-        },
-        {
-          "stopId": "esi",
-          "time": 641
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 635
-        },
-        {
-          "stopId": "casem",
-          "time": 641
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 665
-        },
-        {
-          "stopId": "esi",
-          "time": 671
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 665
-        },
-        {
-          "stopId": "casem",
-          "time": 671
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 695
-        },
-        {
-          "stopId": "esi",
-          "time": 701
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 695
-        },
-        {
-          "stopId": "casem",
-          "time": 701
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 725
-        },
-        {
-          "stopId": "esi",
-          "time": 731
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 725
-        },
-        {
-          "stopId": "casem",
-          "time": 731
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 755
-        },
-        {
-          "stopId": "esi",
-          "time": 761
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 755
-        },
-        {
-          "stopId": "casem",
-          "time": 761
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 785
-        },
-        {
-          "stopId": "esi",
-          "time": 791
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 785
-        },
-        {
-          "stopId": "casem",
-          "time": 791
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 815
-        },
-        {
-          "stopId": "esi",
-          "time": 821
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 815
-        },
-        {
-          "stopId": "casem",
-          "time": 821
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 845
-        },
-        {
-          "stopId": "esi",
-          "time": 851
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 845
-        },
-        {
-          "stopId": "casem",
-          "time": 851
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 875
-        },
-        {
-          "stopId": "esi",
-          "time": 881
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 875
-        },
-        {
-          "stopId": "casem",
-          "time": 881
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 905
-        },
-        {
-          "stopId": "esi",
-          "time": 911
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 905
-        },
-        {
-          "stopId": "casem",
-          "time": 911
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 935
-        },
-        {
-          "stopId": "esi",
-          "time": 941
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 935
-        },
-        {
-          "stopId": "casem",
-          "time": 941
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 965
-        },
-        {
-          "stopId": "esi",
-          "time": 971
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 965
-        },
-        {
-          "stopId": "casem",
-          "time": 971
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 995
-        },
-        {
-          "stopId": "esi",
-          "time": 1001
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 995
-        },
-        {
-          "stopId": "casem",
-          "time": 1001
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1025
-        },
-        {
-          "stopId": "esi",
-          "time": 1031
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1025
-        },
-        {
-          "stopId": "casem",
-          "time": 1031
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1055
-        },
-        {
-          "stopId": "esi",
-          "time": 1061
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1055
-        },
-        {
-          "stopId": "casem",
-          "time": 1061
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1085
-        },
-        {
-          "stopId": "esi",
-          "time": 1091
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1085
-        },
-        {
-          "stopId": "casem",
-          "time": 1091
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1115
-        },
-        {
-          "stopId": "esi",
-          "time": 1121
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1115
-        },
-        {
-          "stopId": "casem",
-          "time": 1121
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1145
-        },
-        {
-          "stopId": "esi",
-          "time": 1151
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1145
-        },
-        {
-          "stopId": "casem",
-          "time": 1151
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1175
-        },
-        {
-          "stopId": "esi",
-          "time": 1181
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1175
-        },
-        {
-          "stopId": "casem",
-          "time": 1181
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1205
-        },
-        {
-          "stopId": "esi",
-          "time": 1211
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1205
-        },
-        {
-          "stopId": "casem",
-          "time": 1211
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1235
-        },
-        {
-          "stopId": "esi",
-          "time": 1241
-        }
-      ]
-    },
-    {
-      "lineId": "lanzadera",
-      "calendarId": "lectivo-laborable",
-      "stops": [
-        {
-          "stopId": "esi",
-          "time": 1235
-        },
-        {
-          "stopId": "casem",
-          "time": 1241
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 555
-        },
-        {
-          "stopId": "casem",
-          "time": 580
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 675
-        },
-        {
-          "stopId": "casem",
-          "time": 700
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 795
-        },
-        {
-          "stopId": "casem",
-          "time": 820
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 1035
-        },
-        {
-          "stopId": "casem",
-          "time": 1060
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 1155
-        },
-        {
-          "stopId": "casem",
-          "time": 1180
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 610
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 635
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 730
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 755
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 850
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 875
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1090
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1115
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "lectivo-sabado",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1210
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1235
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "verano-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 495
-        },
-        {
-          "stopId": "casem",
-          "time": 520
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "verano-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 735
-        },
-        {
-          "stopId": "casem",
-          "time": 760
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "verano-laborable",
-      "stops": [
-        {
-          "stopId": "telegrafia",
-          "time": 975
-        },
-        {
-          "stopId": "casem",
-          "time": 1000
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "verano-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 550
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 575
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "verano-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 790
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 815
-        }
-      ]
-    },
-    {
-      "lineId": "linea-campus",
-      "calendarId": "verano-laborable",
-      "stops": [
-        {
-          "stopId": "casem",
-          "time": 1030
-        },
-        {
-          "stopId": "telegrafia",
-          "time": 1055
-        }
-      ]
+     "stopId": "casem",
+     "time": 446
     }
-  ],
-  "walkLinks": [
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
     {
-      "from": "esi",
-      "to": "casem",
-      "minutes": 18
+     "stopId": "pz-espana",
+     "time": 440
     },
     {
-      "from": "casem",
-      "to": "esi",
-      "minutes": 18
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 442
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 446
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 450
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 453
+    },
+    {
+     "stopId": "casem",
+     "time": 467
     }
-  ],
-  "holidays": [
-    "2026-10-12",
-    "2026-11-02",
-    "2026-12-08",
-    "2026-12-25",
-    "2027-01-01"
-  ]
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 460
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 462
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 466
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 470
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 473
+    },
+    {
+     "stopId": "casem",
+     "time": 487
+    }
+   ]
+  },
+  {
+   "lineId": "m-032",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 470
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 472
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 484
+    },
+    {
+     "stopId": "casem",
+     "time": 497
+    }
+   ],
+   "notes": "SÓLO REALIZA PARADA EN PUERTO REAL EN MARINA DE LA BAHÍA Y 512 VIVIENDAS"
+  },
+  {
+   "lineId": "m-037",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 470
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 472
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 477
+    },
+    {
+     "stopId": "casem",
+     "time": 492
+    },
+    {
+     "stopId": "esi",
+     "time": 497
+    }
+   ]
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 480
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 493
+    },
+    {
+     "stopId": "casem",
+     "time": 498
+    },
+    {
+     "stopId": "esi",
+     "time": 503
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 480
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 482
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 493
+    },
+    {
+     "stopId": "casem",
+     "time": 506
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 480
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 482
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 486
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 490
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 493
+    },
+    {
+     "stopId": "casem",
+     "time": 507
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 500
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 502
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 506
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 510
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 513
+    },
+    {
+     "stopId": "casem",
+     "time": 527
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 520
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 522
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 526
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 530
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 533
+    },
+    {
+     "stopId": "casem",
+     "time": 547
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 525
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 527
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 531
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 535
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 538
+    },
+    {
+     "stopId": "casem",
+     "time": 552
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 540
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 542
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 546
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 550
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 553
+    },
+    {
+     "stopId": "casem",
+     "time": 567
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 540
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 554
+    },
+    {
+     "stopId": "casem",
+     "time": 560
+    },
+    {
+     "stopId": "esi",
+     "time": 565
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 570
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 572
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 576
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 580
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 583
+    },
+    {
+     "stopId": "casem",
+     "time": 597
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 600
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 602
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 606
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 610
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 613
+    },
+    {
+     "stopId": "casem",
+     "time": 627
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "L-D",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 600
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 611
+    },
+    {
+     "stopId": "casem",
+     "time": 616
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (L-V),PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 630
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 632
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 636
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 640
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 643
+    },
+    {
+     "stopId": "casem",
+     "time": 657
+    }
+   ]
+  },
+  {
+   "lineId": "m-031",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 630
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 632
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 643
+    },
+    {
+     "stopId": "casem",
+     "time": 656
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 660
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 662
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 666
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 670
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 673
+    },
+    {
+     "stopId": "casem",
+     "time": 687
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 660
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 673
+    },
+    {
+     "stopId": "casem",
+     "time": 678
+    },
+    {
+     "stopId": "esi",
+     "time": 683
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 690
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 692
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 696
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 700
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 703
+    },
+    {
+     "stopId": "casem",
+     "time": 717
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-052",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 705
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 713
+    },
+    {
+     "stopId": "casem",
+     "time": 723
+    },
+    {
+     "stopId": "esi",
+     "time": 728
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 720
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 722
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 726
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 730
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 733
+    },
+    {
+     "stopId": "casem",
+     "time": 747
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 720
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 722
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 733
+    },
+    {
+     "stopId": "casem",
+     "time": 746
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "L-D",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 720
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 731
+    },
+    {
+     "stopId": "casem",
+     "time": 736
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (L-V),PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 740
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 742
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 753
+    },
+    {
+     "stopId": "casem",
+     "time": 766
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 750
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 759
+    },
+    {
+     "stopId": "casem",
+     "time": 771
+    },
+    {
+     "stopId": "esi",
+     "time": 776
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 760
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 762
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 766
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 770
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 773
+    },
+    {
+     "stopId": "casem",
+     "time": 787
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-904",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 765
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 770
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 772
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 775
+    },
+    {
+     "stopId": "casem",
+     "time": 784
+    },
+    {
+     "stopId": "esi",
+     "time": 789
+    }
+   ],
+   "notes": "CONTINÚA A ALCALÁ DEL VALLE. SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 780
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 782
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 786
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 790
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 793
+    },
+    {
+     "stopId": "casem",
+     "time": 807
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 780
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 782
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 786
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 790
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 793
+    },
+    {
+     "stopId": "casem",
+     "time": 807
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 780
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 782
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 793
+    },
+    {
+     "stopId": "casem",
+     "time": 806
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 780
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 794
+    },
+    {
+     "stopId": "casem",
+     "time": 800
+    },
+    {
+     "stopId": "esi",
+     "time": 805
+    }
+   ],
+   "notes": "PARADA EN RECINTO FERIAL Y C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 800
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 802
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 813
+    },
+    {
+     "stopId": "casem",
+     "time": 826
+    }
+   ]
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 810
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 818
+    },
+    {
+     "stopId": "casem",
+     "time": 830
+    },
+    {
+     "stopId": "esi",
+     "time": 835
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 820
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 822
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 826
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 830
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 833
+    },
+    {
+     "stopId": "casem",
+     "time": 847
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 840
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 851
+    },
+    {
+     "stopId": "casem",
+     "time": 856
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-061",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 840
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 850
+    },
+    {
+     "stopId": "casem",
+     "time": 860
+    },
+    {
+     "stopId": "esi",
+     "time": 865
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 840
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 842
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 846
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 850
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 853
+    },
+    {
+     "stopId": "casem",
+     "time": 867
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 845
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 858
+    },
+    {
+     "stopId": "casem",
+     "time": 863
+    },
+    {
+     "stopId": "esi",
+     "time": 868
+    }
+   ],
+   "notes": "PARADA EN RECINTO FERIAL Y C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 850
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 852
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 857
+    },
+    {
+     "stopId": "casem",
+     "time": 872
+    }
+   ]
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 860
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 862
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 873
+    },
+    {
+     "stopId": "casem",
+     "time": 886
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 870
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 879
+    },
+    {
+     "stopId": "casem",
+     "time": 891
+    },
+    {
+     "stopId": "esi",
+     "time": 896
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 880
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 882
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 886
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 890
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 893
+    },
+    {
+     "stopId": "casem",
+     "time": 907
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 890
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 892
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 903
+    },
+    {
+     "stopId": "casem",
+     "time": 916
+    }
+   ]
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 900
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 913
+    },
+    {
+     "stopId": "casem",
+     "time": 918
+    },
+    {
+     "stopId": "esi",
+     "time": 923
+    }
+   ],
+   "notes": "PARADA EN RECINTO FERIAL Y C.C. LAS DUNAS. Servicio adaptado a PMR con protocolo"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 900
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 911
+    },
+    {
+     "stopId": "casem",
+     "time": 916
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 900
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 902
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 906
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 910
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 913
+    },
+    {
+     "stopId": "casem",
+     "time": 927
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 910
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 912
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 916
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 920
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 923
+    },
+    {
+     "stopId": "casem",
+     "time": 937
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 930
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 932
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 936
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 940
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 943
+    },
+    {
+     "stopId": "casem",
+     "time": 957
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 960
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 962
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 966
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 970
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 973
+    },
+    {
+     "stopId": "casem",
+     "time": 987
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 995
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 997
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1001
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1005
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1008
+    },
+    {
+     "stopId": "casem",
+     "time": 1022
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1020
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1022
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1026
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1030
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1033
+    },
+    {
+     "stopId": "casem",
+     "time": 1047
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1030
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1032
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1036
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1040
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1043
+    },
+    {
+     "stopId": "casem",
+     "time": 1057
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1050
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1052
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1063
+    },
+    {
+     "stopId": "casem",
+     "time": 1076
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1065
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1067
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1071
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1075
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1078
+    },
+    {
+     "stopId": "casem",
+     "time": 1092
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1080
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1082
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 1087
+    },
+    {
+     "stopId": "casem",
+     "time": 1102
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1080
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1091
+    },
+    {
+     "stopId": "casem",
+     "time": 1096
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1080
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1082
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1086
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1090
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1093
+    },
+    {
+     "stopId": "casem",
+     "time": 1107
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1100
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1102
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1106
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1110
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1113
+    },
+    {
+     "stopId": "casem",
+     "time": 1127
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1135
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1137
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1141
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1145
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1148
+    },
+    {
+     "stopId": "casem",
+     "time": 1162
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1140
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1142
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1146
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1150
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1153
+    },
+    {
+     "stopId": "casem",
+     "time": 1167
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1150
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1152
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 1157
+    },
+    {
+     "stopId": "casem",
+     "time": 1172
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1170
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1172
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1176
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1180
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1183
+    },
+    {
+     "stopId": "casem",
+     "time": 1197
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1200
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1202
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1206
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1210
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1213
+    },
+    {
+     "stopId": "casem",
+     "time": 1227
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-061",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1200
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1210
+    },
+    {
+     "stopId": "casem",
+     "time": 1220
+    },
+    {
+     "stopId": "esi",
+     "time": 1225
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1205
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1207
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1211
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1215
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1218
+    },
+    {
+     "stopId": "casem",
+     "time": 1232
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1230
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1232
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 1237
+    },
+    {
+     "stopId": "casem",
+     "time": 1252
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1230
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1239
+    },
+    {
+     "stopId": "casem",
+     "time": 1251
+    },
+    {
+     "stopId": "esi",
+     "time": 1256
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1240
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1242
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1246
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1250
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1253
+    },
+    {
+     "stopId": "casem",
+     "time": 1267
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1260
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1262
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1266
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1270
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1273
+    },
+    {
+     "stopId": "casem",
+     "time": 1287
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1260
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1268
+    },
+    {
+     "stopId": "casem",
+     "time": 1280
+    },
+    {
+     "stopId": "esi",
+     "time": 1285
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1260
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1273
+    },
+    {
+     "stopId": "casem",
+     "time": 1278
+    },
+    {
+     "stopId": "esi",
+     "time": 1283
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1275
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1277
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1281
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1285
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1288
+    },
+    {
+     "stopId": "casem",
+     "time": 1302
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1305
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1315
+    },
+    {
+     "stopId": "casem",
+     "time": 1320
+    }
+   ],
+   "notes": "Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1310
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1312
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1316
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1320
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1323
+    },
+    {
+     "stopId": "casem",
+     "time": 1337
+    }
+   ]
+  },
+  {
+   "lineId": "m-031",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1320
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1322
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1333
+    },
+    {
+     "stopId": "casem",
+     "time": 1346
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1350
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1352
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1363
+    },
+    {
+     "stopId": "casem",
+     "time": 1376
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1380
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1382
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1393
+    },
+    {
+     "stopId": "casem",
+     "time": 1406
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "pz-espana",
+     "time": 1410
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1412
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1423
+    },
+    {
+     "stopId": "casem",
+     "time": 1436
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR (S)"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 393
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 408
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 410
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 412
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 415
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 416
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 413
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 428
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 430
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 432
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 435
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 436
+    }
+   ]
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 440
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 455
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 461
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 462
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 445
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 462
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 465
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 468
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 473
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 475
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 448
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 463
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 465
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 467
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 470
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 471
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 465
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 482
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 485
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 488
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 493
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 495
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 480
+    },
+    {
+     "stopId": "casem",
+     "time": 485
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 503
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 506
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 509
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 515
+    }
+   ]
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 485
+    },
+    {
+     "stopId": "casem",
+     "time": 490
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 500
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 502
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 504
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 511
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 500
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 517
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 520
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 523
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 528
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 530
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 500
+    },
+    {
+     "stopId": "casem",
+     "time": 505
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 520
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 522
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 524
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 531
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 505
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 522
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 525
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 528
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 533
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 535
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 515
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 530
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 534
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 535
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 525
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 542
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 545
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 548
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 553
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 555
+    }
+   ]
+  },
+  {
+   "lineId": "m-061",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 545
+    },
+    {
+     "stopId": "casem",
+     "time": 550
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 562
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 564
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 566
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 570
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 553
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 567
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 569
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 571
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 579
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-960",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 555
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 565
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 567
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 569
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 575
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 555
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 572
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 575
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 578
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 583
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 585
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 560
+    },
+    {
+     "stopId": "casem",
+     "time": 565
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 580
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 582
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 584
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 591
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 565
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 582
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 585
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 588
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 593
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 595
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-904",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 570
+    },
+    {
+     "stopId": "casem",
+     "time": 575
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 587
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 589
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 591
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 595
+    }
+   ],
+   "notes": "PROCEDE ALCALÁ DEL VALLE. SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 585
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 602
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 605
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 608
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 613
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 615
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 590
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 607
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 610
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 613
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 618
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 620
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 615
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 632
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 635
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 638
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 643
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 645
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 620
+    },
+    {
+     "stopId": "casem",
+     "time": 625
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 643
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 646
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 649
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 655
+    }
+   ]
+  },
+  {
+   "lineId": "m-052",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 640
+    },
+    {
+     "stopId": "casem",
+     "time": 645
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 660
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 662
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 663
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 665
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 645
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 662
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 665
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 668
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 673
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 675
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 665
+    },
+    {
+     "stopId": "casem",
+     "time": 670
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 680
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 682
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 684
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 691
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 670
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 676
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 678
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 680
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 685
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 675
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 692
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 695
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 698
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 703
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 705
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 688
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 703
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 705
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 707
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 710
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 711
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 705
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 722
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 725
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 728
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 733
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 735
+    }
+   ]
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 710
+    },
+    {
+     "stopId": "casem",
+     "time": 715
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 733
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 736
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 739
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 745
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 724
+    },
+    {
+     "stopId": "casem",
+     "time": 729
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 739
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 741
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 743
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 750
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 735
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 752
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 755
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 758
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 763
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 765
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 740
+    },
+    {
+     "stopId": "casem",
+     "time": 745
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 763
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 766
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 769
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 775
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 765
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 782
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 785
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 788
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 793
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 795
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 778
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 793
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 795
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 797
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 800
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 801
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 785
+    },
+    {
+     "stopId": "casem",
+     "time": 790
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 798
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 800
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 802
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 808
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 785
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 802
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 805
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 808
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 813
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 815
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 793
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 803
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 805
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 807
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 815
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 813
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 828
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 830
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 832
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 835
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 836
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 825
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 842
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 845
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 848
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 853
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 855
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 830
+    },
+    {
+     "stopId": "casem",
+     "time": 835
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 850
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 852
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 854
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 861
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 838
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 853
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 855
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 857
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 860
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 861
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 845
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 862
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 865
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 868
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 873
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 875
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 850
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 856
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 858
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 860
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 865
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 853
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 868
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 870
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 872
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 875
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 876
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 855
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 872
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 875
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 878
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 883
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 885
+    }
+   ]
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 860
+    },
+    {
+     "stopId": "casem",
+     "time": 865
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 880
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 882
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 884
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 891
+    }
+   ]
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 885
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 902
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 905
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 908
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 913
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 915
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 895
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 910
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 916
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 917
+    }
+   ]
+  },
+  {
+   "lineId": "m-967",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 904
+    },
+    {
+     "stopId": "casem",
+     "time": 909
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 919
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 921
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 923
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 930
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 913
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 928
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 930
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 932
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 935
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 936
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 920
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 937
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 940
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 943
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 948
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 950
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 950
+    },
+    {
+     "stopId": "casem",
+     "time": 955
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 970
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 972
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 974
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 981
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 950
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 967
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 970
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 973
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 978
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 980
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 975
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 992
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 995
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 998
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1003
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1005
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 980
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 997
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1000
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1003
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1008
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1010
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1005
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1022
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1025
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1028
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1033
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1035
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1030
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1047
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1050
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1053
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1058
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1060
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1033
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1048
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1050
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1052
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1055
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1056
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1045
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 1060
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1066
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1067
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1065
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1082
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1085
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1088
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1093
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1095
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1093
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1103
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1105
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1107
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1115
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS. Servicio adaptado a PMR (S),Servicio adaptado a PMR (D)"
+  },
+  {
+   "lineId": "m-030",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1095
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1112
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1115
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1118
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1123
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1125
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1100
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1117
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1120
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1123
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1128
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1130
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1108
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1123
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1125
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1127
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1130
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1131
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1125
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 1140
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1146
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1147
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1135
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1152
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1155
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1158
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1163
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1165
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1145
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1162
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1165
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1168
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1173
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1175
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1170
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1187
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1190
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1193
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1198
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1200
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-036",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1195
+    },
+    {
+     "stopId": "avda-las-cortes",
+     "time": 1210
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1216
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1217
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1205
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1222
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1225
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1228
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1233
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1235
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1215
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1225
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1227
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1229
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1235
+    }
+   ],
+   "notes": "PARADA EN C.C. LAS DUNAS Y RECINTO FERIAL. Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1240
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1257
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1260
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1263
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1268
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1270
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1265
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1282
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1285
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1288
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1293
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1295
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-960",
+   "days": "D",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1270
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1276
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1278
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1280
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1285
+    }
+   ],
+   "notes": "Servicio adaptado a PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1275
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1292
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1295
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1298
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1303
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1305
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-041",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "esi",
+     "time": 1310
+    },
+    {
+     "stopId": "casem",
+     "time": 1315
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1330
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1332
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1334
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1341
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1310
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1327
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1330
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1333
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1338
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1340
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1340
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1357
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1360
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1363
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1368
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1370
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1345
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1362
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1365
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1368
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1373
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1375
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "S-D-F",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1378
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1393
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1395
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1397
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1400
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1401
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-030",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1400
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1417
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 1420
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 1423
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 1428
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 1430
+    }
+   ]
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-V",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 1423
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 1438
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 0
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 2
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 5
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 6
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR"
+  },
+  {
+   "lineId": "m-031",
+   "days": "L-S",
+   "stops": [
+    {
+     "stopId": "casem",
+     "time": 28
+    },
+    {
+     "stopId": "telegrafia",
+     "time": 43
+    },
+    {
+     "stopId": "hospital-segunda-ag",
+     "time": 45
+    },
+    {
+     "stopId": "pz-asdrubal-s-sever",
+     "time": 47
+    },
+    {
+     "stopId": "plaza-de-sevilla-estacion-de-cadiz",
+     "time": 50
+    },
+    {
+     "stopId": "pz-espana",
+     "time": 51
+    }
+   ],
+   "notes": "SERVICIO ADAPTADO A PMR (S)"
+  }
+ ],
+ "walkLinks": [
+  {
+   "from": "esi",
+   "to": "casem",
+   "minutes": 18
+  },
+  {
+   "from": "casem",
+   "to": "esi",
+   "minutes": 18
+  }
+ ],
+ "holidays": [
+  "2026-01-01",
+  "2026-01-06",
+  "2026-02-28",
+  "2026-05-01",
+  "2026-08-15",
+  "2026-10-12",
+  "2026-11-01",
+  "2026-12-06",
+  "2026-12-08",
+  "2026-12-25",
+  "2027-01-01",
+  "2027-01-06",
+  "2027-02-28",
+  "2027-05-01",
+  "2027-08-15",
+  "2027-10-12",
+  "2027-11-01",
+  "2027-12-06",
+  "2027-12-08",
+  "2027-12-25"
+ ]
 }

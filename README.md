@@ -3,9 +3,9 @@
 App para consultar de un vistazo los buses entre casa (Telegrafía Sin Hilos, Cádiz)
 y el campus de Puerto Real (ESI y CASEM).
 
-> **Estado: esqueleto funcional con datos de ejemplo.**
-> Los horarios que muestra ahora mismo están **inventados**. Falta descargar los
-> reales de la API del consorcio — ver [Datos](#datos) más abajo.
+> **Estado: funcionando con los horarios reales del consorcio.**
+> Quedan flecos, sobre todo los festivos locales y el cambio de horario en
+> verano — ver [Pendiente](#pendiente).
 
 ## Por qué está hecho así
 
@@ -40,14 +40,16 @@ Se despliega solo en GitHub Pages al hacer push a `main`.
 | Ruta | Qué hace |
 | --- | --- |
 | `src/model/types.ts` | Formato canónico interno. Todo se normaliza a esto. |
-| `src/model/calendar.ts` | Qué horario toca hoy: periodo (lectivo/verano) × tipo de día. |
+| `src/model/calendar.ts` | Qué expediciones circulan hoy, resolviendo las frecuencias de CTAN. |
 | `src/planner/plan.ts` | Busca itinerarios: directo, con transbordo y andando. |
 | `src/planner/plan.test.ts` | Tests del planificador. |
 | `src/config.ts` | Paradas propias y minutos andando hasta cada una. |
 | `src/main.ts` | Interfaz. |
 | `scripts/descargar-ctan.py` | Reconocimiento de la API de CTAN. Se ejecuta a mano y vuelca todo en `ctan-dump/`. |
 | `scripts/explore-ctan.ts` | Lo mismo, en TypeScript, para cuando haya acceso desde la sesión. |
-| `scripts/make-sample-data.py` | Genera los datos de ejemplo de mientras. |
+| `scripts/generar-horario.py` | Descarga la API y genera `src/data/schedule.json`. |
+| `scripts/make-sample-data.py` | Genera datos de ejemplo, por si hace falta desarrollar sin red. |
+| `NOTAS-API.md` | Cómo funciona la API de CTAN y dónde están sus trampas. |
 
 ### El planificador
 
@@ -68,15 +70,46 @@ que los horarios coinciden con los que se publican de cara al público.
 
 [datos]: https://datos.gob.es/es/catalogo/a01002820-datos-de-la-red-de-consorcios-de-transporte-de-andalucia.xml
 
+### Cómo se regeneran
+
+```bash
+python3 scripts/generar-horario.py                      # desde la API
+python3 scripts/generar-horario.py --desde-volcado ctan-dump2   # sin red
+```
+
+Los horarios salen de `horarios_origen_destino` entre el núcleo de Cádiz (`1`)
+y el del Campus Universitario (`41`). Ese endpoint devuelve la tabla completa
+en los dos sentidos, con una columna por bloque de paso: **Telegrafía-Estadio**,
+**C. Educación/Facultad Ciencias** y **Escuela Ingeniería** entre ellas. Los
+detalles están en `NOTAS-API.md`.
+
+### Lo que dicen los datos reales
+
+De 84 salidas Cádiz → Campus, **las 84 paran en el CASEM y solo 17 llegan a la
+ESI**. En sentido contrario, 86 y 18. Entre las 15:23 y las 20:10 no hay ni un
+solo bus directo a la ESI, y entre las 15:50 y las 21:50 no sale ninguno de
+ella. De ahí que la app tenga sentido.
+
+Además, varias líneas hacen el salto CASEM → ESI en unos 5 minutos, así que
+muchas veces sale mejor enlazar que andar los 18.
+
 ### Pendiente
 
-- [ ] Confirmar los endpoints reales de la API y que los datos están al día.
-      Se hace ejecutando `python3 scripts/descargar-ctan.py` y subiendo `ctan-dump/`.
-- [ ] Escribir el normalizador API → `schedule.json` y sustituir los datos de ejemplo.
-- [ ] Averiguar si las **lanzaderas ESI↔CASEM** están en el consorcio o son un
-      servicio interno de la UCA. Si son internas, hay que meterlas a mano.
-- [ ] Comprobar que los periodos lectivo/verano de la API cuadran con los reales.
-- [ ] Workflow semanal que vuelva a descargar los horarios y abra un PR si cambian.
+- [ ] **Festivos.** Ahora solo están los de fecha fija. Faltan la Semana Santa
+      y los locales de Cádiz y Puerto Real. Se añaden a mano en el campo
+      `holidays` de `schedule.json` (o mejor, en el script que lo genera).
+- [ ] **Periodos de vigencia.** `horarios_origen_destino` no dice a qué
+      planificador pertenece cada horario, así que la app no distingue el
+      horario de curso del de verano. Para arreglarlo hay que cruzar con
+      `horarios_lineas?linea=...`, que sí devuelve `planificadores` con fecha
+      de inicio y fin.
+- [ ] **Contrastar con la web del consorcio** (`siu.cmtbc.es`) que los horarios
+      coinciden con los que publican de cara al público.
+- [ ] **Lanzaderas de la UCA.** Entre las 70 líneas del consorcio no hay
+      ninguna que se llame lanzadera. Si existen como servicio interno de la
+      universidad, hay que meter sus horarios a mano.
+- [ ] Workflow que regenere los horarios cada cierto tiempo y abra un PR si
+      cambian.
 
 ## Aviso
 

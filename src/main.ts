@@ -1,12 +1,23 @@
 import "./styles.css";
 import rawSchedule from "./data/schedule.json";
 import type { Schedule, StopId } from "./model/types.ts";
-import { calendarFor, formatTime, isoDate, minutesOfDay } from "./model/calendar.ts";
+import {
+  formatTime,
+  isoDate,
+  minutesOfDay,
+  outOfCoverage,
+  tripsForDate,
+  unknownFrequencies,
+} from "./model/calendar.ts";
 import { plan, type Itinerary } from "./planner/plan.ts";
 import { ACCESO, CASA, CASEM, ESI, MARGEN_TRANSBORDO } from "./config.ts";
 import { describeLeg, relativeTo, summarize } from "./ui/format.ts";
 
 const schedule = rawSchedule as Schedule;
+
+// Si la API trae frecuencias que no sabemos interpretar, esas expediciones se
+// descartan. Mejor decirlo que esconder buses en silencio.
+const frecuenciasRaras = unknownFrequencies(schedule);
 
 type Sentido = "ida" | "vuelta";
 /** A donde vas (ida) o de donde sales (vuelta). "cualquiera" acepta las dos paradas del campus. */
@@ -20,19 +31,22 @@ const state = {
 const camposDe = (c: Campus): StopId[] =>
   c === "cualquiera" ? [ESI, CASEM] : c === "esi" ? [ESI] : [CASEM];
 
-function calcular(now: Date): { itinerarios: Itinerary[]; sinDatos: boolean } {
-  const cal = calendarFor(now, schedule);
-  if (!cal) return { itinerarios: [], sinDatos: true };
+function calcular(now: Date): { itinerarios: Itinerary[]; sinDatos: boolean; sinServicio: boolean } {
+  if (outOfCoverage(schedule, now)) {
+    return { itinerarios: [], sinDatos: true, sinServicio: false };
+  }
 
   const ahora = minutesOfDay(now);
   const campus = camposDe(state.campus);
+  const sinServicio = tripsForDate(schedule, now).length === 0;
 
   if (state.sentido === "ida") {
     return {
       sinDatos: false,
+      sinServicio,
       itinerarios: plan({
         schedule,
-        calendarId: cal.id,
+        date: now,
         origin: CASA,
         destinations: campus,
         earliestBoarding: ahora + (ACCESO[CASA] ?? 0),
@@ -41,12 +55,12 @@ function calcular(now: Date): { itinerarios: Itinerary[]; sinDatos: boolean } {
     };
   }
 
-  // Vuelta: puede salir de la ESI o del CASEM, asi que se planifica desde cada
-  // una y se juntan los resultados.
+  // Vuelta: puede salir de la ESI o del CASEM, asi que se planifica desde
+  // cada una y se juntan los resultados.
   const todos = campus.flatMap((origin) =>
     plan({
       schedule,
-      calendarId: cal.id,
+      date: now,
       origin,
       destinations: [CASA],
       earliestBoarding: ahora + (ACCESO[origin] ?? 0),
@@ -54,7 +68,7 @@ function calcular(now: Date): { itinerarios: Itinerary[]; sinDatos: boolean } {
     }),
   );
   todos.sort((a, b) => a.depart - b.depart || a.arrive - b.arrive);
-  return { itinerarios: todos, sinDatos: false };
+  return { itinerarios: todos, sinDatos: false, sinServicio };
 }
 
 function optionCard(it: Itinerary, ahora: number, esElProximo: boolean): string {
@@ -83,7 +97,7 @@ function optionCard(it: Itinerary, ahora: number, esElProximo: boolean): string 
 function render(): void {
   const now = new Date();
   const ahora = minutesOfDay(now);
-  const { itinerarios, sinDatos } = calcular(now);
+  const { itinerarios, sinDatos, sinServicio } = calcular(now);
 
   const dia = now.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
   const etiquetaCampus = state.sentido === "ida" ? "¿A dónde vas?" : "¿De dónde sales?";
@@ -107,6 +121,14 @@ function render(): void {
       ? `<div class="banner"><strong>Datos de ejemplo.</strong> Estos horarios están inventados para poder desarrollar la app. Todavía no son los del consorcio.</div>`
       : ""}
 
+    ${frecuenciasRaras.length > 0
+      ? `<div class="banner">No se muestran las salidas con frecuencia ${frecuenciasRaras.map((f) => `<code>${f}</code>`).join(", ")}, que no sabemos a qué días corresponden.</div>`
+      : ""}
+
+    ${sinServicio
+      ? `<div class="banner"><strong>Hoy no circula ninguna línea</strong> según los horarios descargados. Si eso no cuadra, los datos pueden estar desfasados.</div>`
+      : ""}
+
     ${sinDatos
       ? `<div class="banner"><strong>Sin horario para hoy (${isoDate(now)}).</strong> Los datos no cubren esta fecha: hay que volver a descargarlos del consorcio.</div>`
       : ""}
@@ -115,7 +137,10 @@ function render(): void {
       ? `<p class="empty">No quedan salidas hoy.</p>`
       : itinerarios.map((it, i) => optionCard(it, ahora, i === 0)).join("")}
 
-    <footer>Horarios oficiales publicados, orientativos. No es posición en tiempo real.</footer>
+    <footer>
+      ${schedule.warnings.map((w) => `<p>${w}</p>`).join("")}
+      <p>Datos del ${new Date(schedule.generatedAt).toLocaleDateString("es-ES")}.</p>
+    </footer>
   `;
 
   for (const b of app.querySelectorAll<HTMLButtonElement>("[data-sentido]")) {

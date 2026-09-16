@@ -1,4 +1,5 @@
-import type { CalendarId, LineId, Minutes, Schedule, StopId, Trip } from "../model/types.ts";
+import type { LineId, Minutes, Schedule, StopId, Trip } from "../model/types.ts";
+import { tripsForDate } from "../model/calendar.ts";
 
 export interface RideLeg {
   kind: "ride";
@@ -29,7 +30,8 @@ export interface Itinerary {
 
 export interface PlanOptions {
   schedule: Schedule;
-  calendarId: CalendarId;
+  /** Fecha del viaje: decide que expediciones circulan. */
+  date: Date;
   origin: StopId;
   /** Vale cualquiera de estas. Para ir a clase: la ESI, o el CASEM y andar. */
   destinations: readonly StopId[];
@@ -74,21 +76,22 @@ function ridesFromStop(trip: Trip, stopId: StopId): RideLeg[] {
  * ademas llega igual o antes.
  */
 export function plan(options: PlanOptions): Itinerary[] {
-  const { schedule, calendarId, origin, destinations, earliestBoarding } = options;
+  const { schedule, date, origin, destinations, earliestBoarding } = options;
   const minTransfer = options.minTransferMinutes ?? DEFAULTS.minTransferMinutes;
   const window = options.windowMinutes ?? DEFAULTS.windowMinutes;
   const maxLegs = options.maxLegs ?? DEFAULTS.maxLegs;
 
   const targets = new Set(destinations);
-  const trips = schedule.trips.filter((t) => t.calendarId === calendarId);
+  const trips = tripsForDate(schedule, date);
   const horizon = earliestBoarding + window;
   const found: Itinerary[] = [];
 
   const visit = (stopId: StopId, time: Minutes, legs: Leg[]) => {
     if (legs.length > 0 && targets.has(stopId)) {
+      const ajustados = tighten(legs);
       found.push({
-        legs: [...legs],
-        depart: legs[0]!.depart,
+        legs: ajustados,
+        depart: ajustados[0]!.depart,
         arrive: time,
         destination: stopId,
       });
@@ -131,6 +134,32 @@ export function plan(options: PlanOptions): Itinerary[] {
 
   visit(origin, earliestBoarding, []);
   return paretoFilter(found);
+}
+
+/**
+ * Retrasa los tramos a pie todo lo posible sin perder el enlace.
+ *
+ * La busqueda supone que andas nada mas empezar, pero si luego esperas
+ * veinte minutos en la parada, lo que quieres saber es a que hora salir de
+ * verdad. Sin esto, ademas, todos los itinerarios que empiezan andando salen
+ * a la misma hora y el filtro de Pareto se queda solo con uno.
+ *
+ * El ultimo tramo, si es a pie, se deja como esta: ahi si interesa llegar
+ * cuanto antes.
+ */
+function tighten(legs: readonly Leg[]): Leg[] {
+  const out: Leg[] = legs.map((l) => ({ ...l }));
+  let limite: number | undefined;
+  for (let i = out.length - 1; i >= 0; i--) {
+    const leg = out[i]!;
+    if (leg.kind === "walk" && limite !== undefined) {
+      const duracion = leg.arrive - leg.depart;
+      leg.arrive = limite;
+      leg.depart = limite - duracion;
+    }
+    limite = leg.depart;
+  }
+  return out;
 }
 
 /**

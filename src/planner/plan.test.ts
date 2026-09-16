@@ -1,60 +1,73 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { plan, paretoFilter, type Itinerary } from "./plan.ts";
-import { calendarFor, dayTypeFor, formatTime } from "../model/calendar.ts";
+import {
+  formatTime,
+  frequencyMatches,
+  outOfCoverage,
+  parseTime,
+  tripsForDate,
+} from "../model/calendar.ts";
 import type { Schedule } from "../model/types.ts";
 
-/** Horario minimo y controlado, para que las pruebas no dependan de los datos reales. */
+/** Martes, miércoles, sábado y domingo de una misma semana de 2026. */
+const MARTES = new Date(2026, 8, 22);
+const SABADO = new Date(2026, 8, 26);
+const DOMINGO = new Date(2026, 8, 27);
+/** Lunes 12 de octubre de 2026: festivo. */
+const FESTIVO = new Date(2026, 9, 12);
+
+/** Horario mínimo y controlado, para no depender de los datos reales. */
 function makeSchedule(): Schedule {
   return {
     generatedAt: "2026-09-16T00:00:00Z",
     source: "test",
     isSample: true,
+    warnings: [],
     stops: [
-      { id: "casa", name: "Casa", officialName: "Telegrafía Sin Hilos" },
+      { id: "casa", name: "Casa", officialName: "Telegrafía-Estadio" },
       { id: "esi", name: "ESI", officialName: "Escuela Ingeniería" },
       { id: "casem", name: "CASEM", officialName: "C. Educación/Facultad Ciencias" },
     ],
     lines: [
-      { id: "bus", code: "B", name: "Bus", kind: "bus" },
-      { id: "lanz", code: "L", name: "Lanzadera", kind: "lanzadera" },
+      { id: "m030", code: "M-030", name: "M-030" },
+      { id: "m967", code: "M-967", name: "M-967" },
     ],
-    periods: [{ id: "lectivo", name: "Lectivo", from: "2026-09-01", to: "2027-06-30" }],
-    calendars: [
-      { id: "cal", periodId: "lectivo", dayType: "laborable" },
-      { id: "cal-sab", periodId: "lectivo", dayType: "sabado" },
-    ],
+    periods: [],
     trips: [
-      // Directo a la ESI, tarde.
-      { lineId: "bus", calendarId: "cal", stops: [
+      // Directo a la ESI, pero sale tarde.
+      { lineId: "m030", days: "L-V", stops: [
         { stopId: "casa", time: 600 }, { stopId: "casem", time: 625 }, { stopId: "esi", time: 632 } ] },
-      // Solo hasta el CASEM, pero sale antes.
-      { lineId: "bus", calendarId: "cal", stops: [
+      // Solo hasta el CASEM, sale antes.
+      { lineId: "m030", days: "L-V", stops: [
         { stopId: "casa", time: 540 }, { stopId: "casem", time: 565 } ] },
-      // Lanzadera que enlaza con el anterior.
-      { lineId: "lanz", calendarId: "cal", stops: [
+      // Salto CASEM -> ESI que enlaza con el anterior.
+      { lineId: "m967", days: "L-V", stops: [
         { stopId: "casem", time: 575 }, { stopId: "esi", time: 581 } ] },
+      // Un sábado cualquiera, para comprobar el filtrado por frecuencia.
+      { lineId: "m030", days: "S", stops: [
+        { stopId: "casa", time: 600 }, { stopId: "casem", time: 625 } ] },
     ],
     walkLinks: [
       { from: "esi", to: "casem", minutes: 18 },
       { from: "casem", to: "esi", minutes: 18 },
     ],
-    holidays: ["2026-12-25"],
+    holidays: ["2026-10-12"],
   };
 }
 
 test("encuentra el bus directo a la ESI", () => {
-  const s = makeSchedule();
-  const r = plan({ schedule: s, calendarId: "cal", origin: "casa", destinations: ["esi"], earliestBoarding: 595 });
+  const r = plan({ schedule: makeSchedule(), date: MARTES, origin: "casa",
+                   destinations: ["esi"], earliestBoarding: 595 });
   assert.equal(r.length, 1);
   assert.equal(r[0]!.legs.length, 1);
   assert.equal(r[0]!.arrive, 632);
 });
 
-test("prefiere el enlace con lanzadera cuando llega antes que el directo", () => {
-  const s = makeSchedule();
-  const r = plan({ schedule: s, calendarId: "cal", origin: "casa", destinations: ["esi"], earliestBoarding: 480 });
-  // El de las 9:00 + lanzadera llega a las 9:41; el directo de las 10:00 llega a las 10:32.
+test("prefiere el enlace CASEM-ESI cuando llega antes que el directo", () => {
+  const r = plan({ schedule: makeSchedule(), date: MARTES, origin: "casa",
+                   destinations: ["esi"], earliestBoarding: 480 });
+  // 9:00 + salto a las 9:35 llega a las 9:41; el directo de las 10:00 llega a las 10:32.
   const best = r.reduce((a, b) => (a.arrive <= b.arrive ? a : b));
   assert.equal(best.arrive, 581);
   assert.equal(best.legs.length, 2);
@@ -63,59 +76,128 @@ test("prefiere el enlace con lanzadera cuando llega antes que el directo", () =>
 
 test("ofrece llegar al CASEM y seguir andando", () => {
   const s = makeSchedule();
-  s.trips = s.trips.filter((t) => t.lineId !== "lanz"); // sin lanzadera
-  const r = plan({ schedule: s, calendarId: "cal", origin: "casa", destinations: ["esi"], earliestBoarding: 480 });
+  s.trips = s.trips.filter((t) => t.lineId !== "m967"); // sin el salto en bus
+  const r = plan({ schedule: s, date: MARTES, origin: "casa",
+                   destinations: ["esi"], earliestBoarding: 480 });
   const andando = r.find((i) => i.legs.some((l) => l.kind === "walk"));
-  assert.ok(andando, "deberia proponer andar desde el CASEM");
+  assert.ok(andando, "debería proponer andar desde el CASEM");
   assert.equal(andando!.arrive, 565 + 18);
 });
 
-test("respeta el margen minimo de transbordo", () => {
-  const s = makeSchedule();
-  // La lanzadera sale 10 min despues de llegar el bus; con 15 de margen ya no enlaza.
-  const r = plan({ schedule: s, calendarId: "cal", origin: "casa", destinations: ["esi"],
-                   earliestBoarding: 480, minTransferMinutes: 15 });
+test("respeta el margen mínimo de transbordo", () => {
+  // El salto sale 10 min después de llegar el bus; con 15 de margen no enlaza.
+  const r = plan({ schedule: makeSchedule(), date: MARTES, origin: "casa",
+                   destinations: ["esi"], earliestBoarding: 480, minTransferMinutes: 15 });
   assert.ok(!r.some((i) => i.legs.length === 2 && i.legs[1]!.kind === "ride"));
 });
 
-test("no devuelve nada si no sale ningun bus en la ventana", () => {
-  const s = makeSchedule();
-  const r = plan({ schedule: s, calendarId: "cal", origin: "casa", destinations: ["esi"],
-                   earliestBoarding: 700, windowMinutes: 60 });
+test("no devuelve nada si no sale nada en la ventana", () => {
+  const r = plan({ schedule: makeSchedule(), date: MARTES, origin: "casa",
+                   destinations: ["esi"], earliestBoarding: 700, windowMinutes: 60 });
   assert.deepEqual(r, []);
 });
 
 test("la vuelta desde la ESI puede empezar andando al CASEM", () => {
   const s = makeSchedule();
   s.trips = [
-    { lineId: "bus", calendarId: "cal", stops: [{ stopId: "casem", time: 1000 }, { stopId: "casa", time: 1025 }] },
+    { lineId: "m030", days: "L-V", stops: [
+      { stopId: "casem", time: 1000 }, { stopId: "casa", time: 1025 } ] },
   ];
-  const r = plan({ schedule: s, calendarId: "cal", origin: "esi", destinations: ["casa"], earliestBoarding: 960 });
+  const r = plan({ schedule: s, date: MARTES, origin: "esi",
+                   destinations: ["casa"], earliestBoarding: 960 });
   assert.equal(r.length, 1);
   assert.equal(r[0]!.legs[0]!.kind, "walk");
   assert.equal(r[0]!.arrive, 1025);
 });
 
-test("paretoFilter descarta lo que sale antes y llega despues", () => {
+test("un sábado no salen los buses de L-V", () => {
+  const s = makeSchedule();
+  const sabado = tripsForDate(s, SABADO);
+  assert.equal(sabado.length, 1);
+  assert.equal(sabado[0]!.days, "S");
+  assert.equal(tripsForDate(s, MARTES).length, 3);
+});
+
+test("un festivo entre semana no es laborable", () => {
+  const s = makeSchedule();
+  // El 12 de octubre de 2026 cae en lunes, pero es festivo: no hay L-V ni S.
+  assert.deepEqual(tripsForDate(s, FESTIVO), []);
+});
+
+test("las frecuencias de CTAN se resuelven bien", () => {
+  const h = ["2026-10-12"];
+  assert.equal(frequencyMatches("L-V", MARTES, h), true);
+  assert.equal(frequencyMatches("L-V", SABADO, h), false);
+  assert.equal(frequencyMatches("L-S", SABADO, h), true);
+  assert.equal(frequencyMatches("S", SABADO, h), true);
+  assert.equal(frequencyMatches("D", DOMINGO, h), true);
+  assert.equal(frequencyMatches("D", SABADO, h), false);
+  assert.equal(frequencyMatches("S-D-F", SABADO, h), true);
+  assert.equal(frequencyMatches("S-D-F", DOMINGO, h), true);
+  assert.equal(frequencyMatches("S-D-F", MARTES, h), false);
+  assert.equal(frequencyMatches("L-D", DOMINGO, h), true);
+  assert.equal(frequencyMatches("L-J", new Date(2026, 8, 25), h), false); // viernes
+  assert.equal(frequencyMatches("V", new Date(2026, 8, 25), h), true);
+  // Un festivo entre semana: cae el L-V, entran los de festivo.
+  assert.equal(frequencyMatches("L-V", FESTIVO, h), false);
+  assert.equal(frequencyMatches("D", FESTIVO, h), true);
+  assert.equal(frequencyMatches("S-D-F", FESTIVO, h), true);
+  // "Día suelto" no se puede resolver: no se enseña.
+  assert.equal(frequencyMatches("-", MARTES, h), false);
+});
+
+test("sin periodos declarados nunca se considera fuera de cobertura", () => {
+  const s = makeSchedule();
+  assert.equal(outOfCoverage(s, new Date(2030, 0, 1)), false);
+  s.periods = [{ id: "p", name: "Curso", from: "2026-09-01", to: "2027-06-30" }];
+  assert.equal(outOfCoverage(s, new Date(2030, 0, 1)), true);
+  assert.equal(outOfCoverage(s, MARTES), false);
+});
+
+test("paretoFilter descarta lo que sale antes y llega después", () => {
   const peor: Itinerary = { legs: [], depart: 500, arrive: 600, destination: "esi" };
   const mejor: Itinerary = { legs: [], depart: 520, arrive: 590, destination: "esi" };
   assert.deepEqual(paretoFilter([peor, mejor]), [mejor]);
 });
 
-test("los festivos cuentan como domingo", () => {
-  const s = makeSchedule();
-  // 2026-12-25 es viernes, pero esta declarado festivo.
-  assert.equal(dayTypeFor(new Date(2026, 11, 25), s.holidays), "domingo-festivo");
-  assert.equal(dayTypeFor(new Date(2026, 11, 24), s.holidays), "laborable");
-});
-
-test("una fecha fuera de todo periodo no devuelve horario", () => {
-  const s = makeSchedule();
-  assert.equal(calendarFor(new Date(2030, 0, 15), s), undefined);
-  assert.equal(calendarFor(new Date(2026, 8, 16), s)?.id, "cal");
-});
-
-test("formatTime", () => {
+test("parseTime y formatTime", () => {
+  assert.equal(parseTime("08:23"), 503);
+  assert.equal(parseTime("--"), undefined);
+  assert.equal(parseTime(""), undefined);
   assert.equal(formatTime(632), "10:32");
-  assert.equal(formatTime(0), "00:00");
+});
+
+test("los tramos a pie se retrasan hasta justo antes del enlace", () => {
+  const s = makeSchedule();
+  s.trips = [
+    { lineId: "m030", days: "L-V", stops: [
+      { stopId: "casem", time: 1000 }, { stopId: "casa", time: 1025 } ] },
+    { lineId: "m030", days: "L-V", stops: [
+      { stopId: "casem", time: 1060 }, { stopId: "casa", time: 1085 } ] },
+  ];
+  const r = plan({ schedule: s, date: MARTES, origin: "esi",
+                   destinations: ["casa"], earliestBoarding: 900 });
+  // Dos opciones distintas, no una: andar a las 982 para el bus de las 1000,
+  // o andar a las 1042 para el de las 1060.
+  assert.equal(r.length, 2);
+  assert.deepEqual(r.map((i) => i.depart), [1000 - 18, 1060 - 18]);
+  assert.deepEqual(r.map((i) => i.arrive), [1025, 1085]);
+  // El tramo a pie sigue durando lo mismo.
+  for (const it of r) {
+    const w = it.legs[0]!;
+    assert.equal(w.kind, "walk");
+    assert.equal(w.arrive - w.depart, 18);
+  }
+});
+
+test("un tramo a pie final no se retrasa: interesa llegar cuanto antes", () => {
+  const s = makeSchedule();
+  s.trips = [
+    { lineId: "m030", days: "L-V", stops: [
+      { stopId: "casa", time: 540 }, { stopId: "casem", time: 565 } ] },
+  ];
+  const r = plan({ schedule: s, date: MARTES, origin: "casa",
+                   destinations: ["esi"], earliestBoarding: 480 });
+  assert.equal(r.length, 1);
+  assert.equal(r[0]!.arrive, 565 + 18);
 });

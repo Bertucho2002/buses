@@ -1,4 +1,4 @@
-import type { Calendar, DayType, Period, Schedule } from "./types.ts";
+import type { FrequencyCode, Period, Schedule, Trip } from "./types.ts";
 
 /** Fecha local (no UTC) en formato YYYY-MM-DD. */
 export function isoDate(d: Date): string {
@@ -16,13 +16,70 @@ export function formatTime(m: number): string {
   return `${String(h).padStart(2, "0")}:${String(wrapped % 60).padStart(2, "0")}`;
 }
 
-/** Que tipo de dia es una fecha, teniendo en cuenta los festivos declarados. */
-export function dayTypeFor(date: Date, holidays: readonly string[]): DayType {
-  if (holidays.includes(isoDate(date))) return "domingo-festivo";
+/** "08:23" -> 503. Devuelve undefined para "--" y demas basura. */
+export function parseTime(s: string): number | undefined {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(s.trim());
+  if (!m) return undefined;
+  const h = Number(m[1]);
+  const min = Number(m[2]);
+  if (min > 59) return undefined;
+  return h * 60 + min;
+}
+
+/**
+ * Si una expedicion con esta frecuencia circula en una fecha dada.
+ *
+ * Las frecuencias de CTAN se solapan a proposito: un martes lectivo encaja a
+ * la vez en L-V, L-J, L-S y L-D, asi que el horario de un dia es la union de
+ * todas las que casen.
+ *
+ * Devuelve false para las que no se pueden resolver (el "dia suelto", que no
+ * lleva fecha asociada): mejor no enseñar un bus que puede no existir.
+ */
+export function frequencyMatches(
+  code: FrequencyCode,
+  date: Date,
+  holidays: readonly string[],
+): boolean {
   const dow = date.getDay(); // 0 domingo ... 6 sabado
-  if (dow === 0) return "domingo-festivo";
-  if (dow === 6) return "sabado";
-  return "laborable";
+  const festivo = holidays.includes(isoDate(date)) || dow === 0;
+  const laborable = !festivo && dow !== 0;
+
+  switch (code.trim().toUpperCase()) {
+    case "L-V":
+      return laborable && dow >= 1 && dow <= 5;
+    case "L-J":
+      return laborable && dow >= 1 && dow <= 4;
+    case "V":
+      return laborable && dow === 5;
+    case "L":
+      return laborable && dow === 1;
+    case "L-S":
+      return laborable && dow >= 1 && dow <= 6;
+    case "S":
+      return laborable && dow === 6;
+    case "D":
+    case "D*":
+      return festivo;
+    case "S-D-F":
+      return festivo || (laborable && dow === 6);
+    case "L-D":
+      return true;
+    default:
+      // "-" (día suelto) y cualquier código que no conozcamos.
+      return false;
+  }
+}
+
+/** Códigos de frecuencia que no sabemos resolver, para poder avisar. */
+export function unknownFrequencies(schedule: Schedule): string[] {
+  const conocidos = new Set(["L-V", "L-J", "V", "L", "L-S", "S", "D", "D*", "S-D-F", "L-D"]);
+  const raros = new Set<string>();
+  for (const t of schedule.trips) {
+    const c = t.days.trim().toUpperCase();
+    if (!conocidos.has(c)) raros.add(t.days);
+  }
+  return [...raros];
 }
 
 export function periodFor(date: Date, periods: readonly Period[]): Period | undefined {
@@ -31,16 +88,25 @@ export function periodFor(date: Date, periods: readonly Period[]): Period | unde
 }
 
 /**
- * El horario vigente en una fecha dada.
+ * Las expediciones que circulan en una fecha.
  *
- * Devuelve undefined si la fecha cae fuera de todos los periodos conocidos,
- * que es justo lo que pasa cuando los datos se han quedado viejos. Quien
- * llama debe distinguir ese caso de "hoy no hay servicio" y avisar al usuario,
- * porque no es lo mismo no tener bus que no tener datos.
+ * Si el horario trae periodos, se filtra tambien por el que este vigente. Si
+ * no trae ninguno (la fuente no siempre los da), no se filtra por periodo: es
+ * preferible enseñar el horario que se tiene, avisando, a no enseñar nada.
  */
-export function calendarFor(date: Date, schedule: Schedule): Calendar | undefined {
-  const period = periodFor(date, schedule.periods);
-  if (!period) return undefined;
-  const dayType = dayTypeFor(date, schedule.holidays);
-  return schedule.calendars.find((c) => c.periodId === period.id && c.dayType === dayType);
+export function tripsForDate(schedule: Schedule, date: Date): Trip[] {
+  const period = schedule.periods.length > 0 ? periodFor(date, schedule.periods) : undefined;
+  return schedule.trips.filter((t) => {
+    if (period && t.periodId && t.periodId !== period.id) return false;
+    return frequencyMatches(t.days, date, schedule.holidays);
+  });
+}
+
+/**
+ * true si la fecha cae fuera de todos los periodos conocidos, es decir, los
+ * datos se han quedado viejos. Con periods vacío no se puede saber, asi que
+ * devuelve false y el aviso correspondiente va por otro lado.
+ */
+export function outOfCoverage(schedule: Schedule, date: Date): boolean {
+  return schedule.periods.length > 0 && periodFor(date, schedule.periods) === undefined;
 }

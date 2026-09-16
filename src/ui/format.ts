@@ -10,18 +10,18 @@ export function lineCode(schedule: Schedule, id: string): string {
   return schedule.lines.find((l) => l.id === id)?.code ?? id;
 }
 
-export function isLanzadera(schedule: Schedule, id: string): boolean {
-  return schedule.lines.find((l) => l.id === id)?.kind === "lanzadera";
-}
-
-/** Etiqueta corta que resume en que consiste el itinerario. */
+/** Etiqueta corta que resume en qué consiste el itinerario. */
 export function summarize(schedule: Schedule, it: Itinerary): string {
-  if (it.legs.length === 1 && it.legs[0]!.kind === "ride") return "directo";
-  const parts = it.legs.map((leg: Leg) => {
-    if (leg.kind === "walk") return `${leg.arrive - leg.depart} min andando`;
-    return isLanzadera(schedule, leg.lineId) ? "lanzadera" : lineCode(schedule, leg.lineId);
-  });
-  return parts.join(" + ");
+  if (it.legs.length === 1 && it.legs[0]!.kind === "ride") {
+    return `directo · ${lineCode(schedule, (it.legs[0] as { lineId: string }).lineId)}`;
+  }
+  return it.legs
+    .map((leg: Leg) =>
+      leg.kind === "walk"
+        ? `${leg.arrive - leg.depart} min andando`
+        : lineCode(schedule, leg.lineId),
+    )
+    .join(" + ");
 }
 
 export function describeLeg(schedule: Schedule, leg: Leg): string {
@@ -30,11 +30,10 @@ export function describeLeg(schedule: Schedule, leg: Leg): string {
   if (leg.kind === "walk") {
     return `Andando ${from} → ${to} · ${leg.arrive - leg.depart} min`;
   }
-  const kind = isLanzadera(schedule, leg.lineId) ? "Lanzadera" : `Línea ${lineCode(schedule, leg.lineId)}`;
-  return `${kind} · ${from} ${formatTime(leg.depart)} → ${to} ${formatTime(leg.arrive)}`;
+  return `Línea ${lineCode(schedule, leg.lineId)} · ${from} ${formatTime(leg.depart)} → ${to} ${formatTime(leg.arrive)}`;
 }
 
-/** "en 12 min", "sale ya", "hace 3 min". */
+/** "en 12 min", "en 1 h 5 min", "ahora". */
 export function relativeTo(now: number, when: number): string {
   const d = when - now;
   if (d <= 0) return "ahora";
